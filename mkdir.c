@@ -27,6 +27,7 @@ void mkdir_p(char* argv[]){
         }
         chdir(delim(file));
         file=strtok(NULL,"/");
+        printf("%s\n",file);
     }
     chdir(delim(curr_dir));
     return;
