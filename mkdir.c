@@ -19,6 +19,7 @@ void mkdir_p(char* argv[]){
     size_t s=0;
     curr_dir = getcwd(curr_dir,s);
     int i=0;
+    printf("%s\n",argv[2]);
     char* file = strtok(argv[2],"/");
     while(file!=NULL){
         if(mkdir(delim(file))!=0){
