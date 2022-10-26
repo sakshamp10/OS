@@ -90,7 +90,7 @@ void echo(char **args)
             {
                 while(strcmp(st[j],'\\')==0)
                 {
-                    printf("%s",'\\');
+                    printf("%c",'\\');
                     j++;
                 }
             }
