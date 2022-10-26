@@ -9,7 +9,7 @@
 int main(){
     char* l="/mkdir.c";
     char* p="path/to/dest";
-    strcat(p,l);
+    p=strcat(p,l);
     printf("%s\n",p);
     return 0;
 }
