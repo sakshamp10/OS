@@ -145,7 +145,7 @@ int main(){
 //                }
 //            }
             char* inp2= delim(full_path);
-            printf("full path is :%s\n",inp2);
+            printf("full path is :'%s'\n",inp2);
             if(inp2==NULL || strcmp(inp2,"\n")==0){
                 if(chdir("/root")!=0 && chdir("/~")!=0){
                     printf("Error occurred!\n");
