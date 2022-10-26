@@ -7,8 +7,8 @@
 
 
 int main(){
-    char l[]="/mkdir.c";
-    char p[]="path/to/dest";
+    char l[100]="/mkdir.c";
+    char p[100]="path/to/dest";
     strcat(p,l);
     printf("%s\n",p);
     return 0;
