@@ -15,7 +15,7 @@ void mkdir_p(char* argv[]){
 }
 
 void mkdir_v(char* argv[]){
-    if(argv[2]==NULL || argv[2]=='\n'){
+    if(argv[2]==NULL || strcmp(argv[2],'\n')){
         printf("Expected file name: not found!\n");
         return;
     }
