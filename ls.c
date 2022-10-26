@@ -7,10 +7,9 @@
 
 
 int main(){
-    char* l="/mkdir.c";
-    char* p="path/to/dest";
-    printf("hello world\n");
-    p=strcat(p,l);
+    char l[]="/mkdir.c";
+    char p[]="path/to/dest";
+    strcat(p,l);
     printf("%s\n",p);
     return 0;
 }
