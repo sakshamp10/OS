@@ -21,27 +21,26 @@ void mkdir_p(char* argv[]){
     printf("%s\n",argv[2]);
     char* file = strtok(argv[2],"/");
     printf("file: %s\n",file);
-    size_t size=15;
-    char** files=malloc(size*sizeof(char*));
-    int count=0;
+//    size_t size=15;
+//    char** files=malloc(size*sizeof(char*));
+//    int count=0;
     while(file!=NULL){
-        files[count]=file;
-        printf("count: %d\n",count);
-        count++;
+//        files[count]=file;
+//        printf("count: %d\n",count);
+//        count++;
         if(mkdir(delim(file))!=0){
-            printf("123\n");
             printf("Error in creating the specified directory!: %s\n",file);
             return;
         }
-        if(count>=size){
-            size+=10;
-            files=realloc(files,size*sizeof(char*));
-        }
+//        if(count>=size){
+//            size+=10;
+//            files=realloc(files,size*sizeof(char*));
+//        }
         chdir(delim(file));
         file=strtok(NULL,"/");
         printf("%s\n",file);
     }
-    files[count]=NULL;
+//    files[count]=NULL;
 //    printf(" last: %s",files[count]);
 //    int i=0;
 //    while(files[i]!=NULL){
