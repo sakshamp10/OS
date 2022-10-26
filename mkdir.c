@@ -15,19 +15,17 @@ void mkdir_p(char* argv[]){
 }
 
 void mkdir_v(char* argv[]){
-    if(argv[2]==NULL){
+    if(argv[2]==NULL || argv[2]=='\n'){
         printf("Expected file name: not found!\n");
         return;
     }
-    char* file=NULL;
-    strcpy(file,delim(argv[2]));
+    char* file=delim(argv[2]);
     if(mkdir(file)==0){
         printf("mkdir: created directory '%s'\n",file);
     }
     else{
         printf("Error occurred!\n");
     }
-    free(file);
 }
 
 int main(int argc, char* argv[], const char* envp[]){
