@@ -19,10 +19,17 @@ void mkdir_p(char* argv[]){
     size_t s=0;
     curr_dir = getcwd(curr_dir,s);
     int i=0;
-    char* file =
-    while(argv[2][i]!='\0'){
-
+    char* file = strtok(argv[2],"/");
+    while(file!=NULL){
+        if(mkdir(delim(file))!=0){
+            printf("Error in creating the specified directory!: %s\n",delim(file));
+            return;
+        }
+        chdir(delim(file));
+        file=strtok(NULL,"/");
     }
+    chdir(delim(curr_dir));
+    return;
 }
 
 void mkdir_v(char* argv[]){

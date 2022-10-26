@@ -91,7 +91,7 @@ void echo(char **args)
                 while(args[i][j]=='\\' && args[i][j+1]=='\\')
                 {
                     printf("%c",'\\');
-                    j+=2;
+                    j+=1;
                 }
             }
             else
