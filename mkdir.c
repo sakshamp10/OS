@@ -26,7 +26,7 @@ void mkdir_v(char* argv[]){
     else{
         printf("Error occurred!\n");
     }
-    free(file);
+//    free(file);
 }
 
 int main(int argc, char* argv[], const char* envp[]){
