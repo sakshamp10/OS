@@ -18,9 +18,7 @@ void mkdir_p(char* argv[]){
     char* curr_dir=NULL;
     size_t s=0;
     curr_dir = getcwd(curr_dir,s);
-    printf("%s\n",argv[2]);
     char* file = strtok(argv[2],"/");
-    printf("file: %s\n",file);
     while(file!=NULL){
         if(file[strlen(file)-1] =='\n'){
             file[strlen(file)-1] = '\0';
@@ -31,8 +29,6 @@ void mkdir_p(char* argv[]){
         }
         chdir(file);
         file=strtok(NULL,"/");
-        printf("%d\n",(file==NULL));
-        printf("%s\n",file);
     }
 //    files[count]=NULL;
 //    printf(" last: %s",files[count]);
@@ -48,7 +44,7 @@ void mkdir_p(char* argv[]){
 //        chdir(delim(file));
 //
 //    }
-    printf("123\n");
+//    printf("123\n");
     chdir(delim(curr_dir));
     return;
 }
