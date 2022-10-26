@@ -28,32 +28,32 @@ void mkdir_p(char* argv[]){
         files[count]=file;
         printf("count: %d\n",count);
         count++;
-//        if(mkdir(delim(file))!=0){
-//            printf("Error in creating the specified directory!: %s\n",delim(file));
-//            return;
-//        }
+        if(mkdir(delim(file))!=0){
+            printf("Error in creating the specified directory!: %s\n",file);
+            return;
+        }
         if(count>=size){
             size+=10;
             files=realloc(files,size*sizeof(char*));
         }
-//        chdir(delim(file));
+        chdir(delim(file));
         file=strtok(NULL,"/");
         printf("%s\n",file);
     }
     files[count]=NULL;
 //    printf(" last: %s",files[count]);
-    int i=0;
-    while(files[i]!=NULL){
-        file=files[i];
-        if(mkdir(delim(file))!=0){
-            printf("Error in creating the specified directory!: %s\n",delim(file));
-            return;
-        }
-        printf("made: %s\n",file);
-        i++;
-        chdir(delim(file));
-
-    }
+//    int i=0;
+//    while(files[i]!=NULL){
+//        file=files[i];
+//        if(mkdir(delim(file))!=0){
+//            printf("Error in creating the specified directory!: %s\n",delim(file));
+//            return;
+//        }
+//        printf("made: %s\n",file);
+//        i++;
+//        chdir(delim(file));
+//
+//    }
     printf("123\n");
     chdir(delim(curr_dir));
     return;
