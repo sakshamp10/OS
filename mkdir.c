@@ -21,6 +21,7 @@ void mkdir_p(char* argv[]){
     int i=0;
     printf("%s\n",argv[2]);
     char* file = strtok(argv[2],"/");
+    printf("file: %s\n",file);
     while(file!=NULL){
         if(mkdir(delim(file))!=0){
             printf("Error in creating the specified directory!: %s\n",delim(file));
