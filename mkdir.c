@@ -15,8 +15,11 @@ void mkdir_m(){
 }
 
 void mkdir_v(char* argv[]){
-    if(mkdir(argv[2])!=0){
-
+    if(mkdir(argv[2])==0){
+        printf("mkdir: created directory '%s'\n",argv[2]);
+    }
+    else{
+        printf("Error occurred!\n");
     }
 }
 

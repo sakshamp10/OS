@@ -128,7 +128,7 @@ int main(){
         char* a=NULL;
         size_t t=0;
         char* b= getcwd(a,t);
-        printf("[%s]$ ",basename(b));
+        printf("[ %s ]$ ",basename(b));
         free(a);
         free(b);
         char **input=input_line();
@@ -138,14 +138,7 @@ int main(){
         }
         else if(strcmp(inp,"cd")==0){
             char* full_path = fullpath(input);
-
-//            if(input[1]==NULL){
-//                if(chdir("/root")!=0 && chdir("/~")!=0){
-//                    printf("Error occurred!\n");
-//                }
-//            }
             char* inp2= delim(full_path);
-            printf("full path is :'%s'\n",inp2);
             if(inp2==NULL || strcmp(inp2," ")==0){
                 if(chdir("/root")!=0 && chdir("/~")!=0){
                     printf("Error occurred!\n");
@@ -167,18 +160,21 @@ int main(){
             break;
         }
         else if(strcmp(inp,"mkdir")==0){
-//            pid_t proc;
-//            proc=fork();
-//            if(proc<0){
-//                printf("Error occurred!\n");
-//            }
-//            else if(proc==0){
-//                char* PATH=getenv(PATH);
-//             execve("./mkdir.c",input,  );
-//            }
-//            else{
-//                wait(NULL);
-//            }
+            pid_t proc;
+            proc=fork();
+            if(proc<0){
+                printf("Error occurred!\n");
+            }
+            else if(proc==0){
+                char* path=NULL;
+                size_t t=0;
+                path= getcwd(path,t);
+                path=strcat(path,"/mkdir.c");
+                execve(path,input, NULL);
+            }
+            else{
+                wait(NULL);
+            }
         }
         else if(strcmp(inp,"cat")==0){
 

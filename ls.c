@@ -4,3 +4,11 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <libgen.h>
+
+
+int main(){
+    char* l="/mkdir.c";
+    char* p="path/to/dest";
+    strcat(p,l);
+    printf("%s\n",p);
+}
