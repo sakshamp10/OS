@@ -76,9 +76,9 @@ void echo(char **args)
         else
         {
             st=args[i];
-            printf("%s",st);
+//            printf("%s",st);
         }
-        printf("%s",st);
+//        printf("%s",st);
         for(int j=0;st[j]!='\0';j++)
         {
             if(st[j]!='\\')
