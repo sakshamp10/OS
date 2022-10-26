@@ -54,6 +54,7 @@ void mkdir_p(char* argv[]){
         chdir(delim(file));
 
     }
+    printf("123\n");
     chdir(delim(curr_dir));
     return;
 }
