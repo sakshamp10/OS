@@ -135,18 +135,18 @@ int main(){
             break;
         }
         else if(strcmp(inp,"mkdir")==0){
-            pid_t proc;
-            proc=fork();
-            if(proc<0){
-                printf("Error occurred!\n");
-            }
-            else if(proc==0){
-                char* PATH=getenv(PATH);
-                execve("./mkdir.c",input,  );
-            }
-            else{
-                wait(NULL);
-            }
+//            pid_t proc;
+//            proc=fork();
+//            if(proc<0){
+//                printf("Error occurred!\n");
+//            }
+//            else if(proc==0){
+//                char* PATH=getenv(PATH);
+//             execve("./mkdir.c",input,  );
+//            }
+//            else{
+//                wait(NULL);
+//            }
         }
         else if(strcmp(inp,"cat")==0){
 
