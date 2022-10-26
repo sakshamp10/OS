@@ -41,7 +41,7 @@ void mkdir_p(char* argv[]){
         printf("%s\n",file);
     }
     files[count]=NULL;
-    printf(" last: %s",files[count]);
+//    printf(" last: %s",files[count]);
     int i=0;
     while(files[i]!=NULL){
         file=files[i];
@@ -49,9 +49,10 @@ void mkdir_p(char* argv[]){
             printf("Error in creating the specified directory!: %s\n",delim(file));
             return;
         }
+        printf("made: %s\n",file);
         i++;
         chdir(delim(file));
-        printf("made: %s\n",file);
+
     }
     chdir(delim(curr_dir));
     return;
