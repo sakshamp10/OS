@@ -48,6 +48,7 @@ void mkdir_p(char* argv[]){
         }
         i++;
         chdir(delim(file));
+        printf("made: %s\n",file);
     }
     chdir(delim(curr_dir));
     return;
