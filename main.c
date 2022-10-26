@@ -134,8 +134,18 @@ int main(){
         else if(strcmp(inp,"exit")==0){
             break;
         }
-        else if(strcmp(inp,"ls")==0){
-
+        else if(strcmp(inp,"mkdir")==0){
+            pid_t proc;
+            proc=fork();
+            if(proc<0){
+                printf("Error occurred!\n");
+            }
+            else if(proc==0){
+                execve("./mkdir.c",input,environ );
+            }
+            else{
+                wait(NULL);
+            }
         }
         else if(strcmp(inp,"cat")==0){
 
@@ -146,7 +156,7 @@ int main(){
         else if(strcmp(inp,"rm")==0){
 
         }
-        else if(strcmp(inp,"mkdir")==0){
+        else if(strcmp(inp,"ls")==0){
 
         }
         else{
