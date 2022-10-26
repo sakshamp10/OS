@@ -29,6 +29,7 @@ void mkdir_p(char* argv[]){
         printf("count: %d\n",count);
         count++;
         if(mkdir(delim(file))!=0){
+            printf("123\n");
             printf("Error in creating the specified directory!: %s\n",file);
             return;
         }
