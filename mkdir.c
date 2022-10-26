@@ -22,11 +22,12 @@ void mkdir_p(char* argv[]){
     char* file = strtok(argv[2],"/");
     printf("file: %s\n",file);
     while(file!=NULL){
-        if(mkdir(delim(file))!=0){
+        file[strlen(file)-1]='\0';
+        if(mkdir(file)!=0){
             printf("Error in creating the specified directory!: %s\n",file);
             return;
         }
-        chdir(delim(file));
+        chdir(file);
         file=strtok(NULL,"/");
         printf("%d\n",(file==NULL));
         printf("%s\n",file);
