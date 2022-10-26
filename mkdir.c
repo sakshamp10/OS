@@ -10,7 +10,7 @@ char* delim(char* input){
     return inp;
 }
 
-void mkdir_p(){
+void mkdir_p(char* argv[]){
 
 }
 
@@ -19,14 +19,15 @@ void mkdir_v(char* argv[]){
         printf("Expected file name: not found!\n");
         return;
     }
-    char* file=delim(argv[2]);
+    char* file=NULL;
+    strcpy(file,delim(argv[2]));
     if(mkdir(file)==0){
         printf("mkdir: created directory '%s'\n",file);
     }
     else{
         printf("Error occurred!\n");
     }
-//    free(file);
+    free(file);
 }
 
 int main(int argc, char* argv[], const char* envp[]){
