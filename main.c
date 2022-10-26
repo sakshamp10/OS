@@ -138,14 +138,14 @@ int main(){
         }
         else if(strcmp(inp,"cd")==0){
             char* full_path = fullpath(input);
-            if(input[1]==NULL){
-                if(chdir("root")!=0 && chdir("~")!=0){
-                    printf("Error occurred!\n");
-                }
-            }
+//            if(input[1]==NULL){
+//                if(chdir("/root")!=0 && chdir("/~")!=0){
+//                    printf("Error occurred!\n");
+//                }
+//            }
             char* inp2= delim(full_path);
             if(inp2==NULL){
-                if(chdir("root")!=0 && chdir("~")!=0){
+                if(chdir("/root")!=0 && chdir("/~")!=0){
                     printf("Error occurred!\n");
                 }
             }
