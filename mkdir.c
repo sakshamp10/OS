@@ -15,6 +15,7 @@ void mkdir_p(char* argv[]){
         printf("Expected file name: not found!\n");
         return;
     }
+
 }
 
 void mkdir_v(char* argv[]){
@@ -51,6 +52,8 @@ int main(int argc, char* argv[], const char* envp[]){
             printf("Expected file name: not found!\n");
             return 0;
         }
-        mkdir(delim(argv[1]));
+        if(mkdir(delim(argv[1]))!=0){
+            printf("Could not create directory due to unexpected error!\n");
+        }
     }
 }
