@@ -5,6 +5,8 @@
 #include <sys/wait.h>
 #include <libgen.h>
 
+char* files_path=NULL;
+
 char* delim(char* input){
     char* inp=strtok(input,"\n");
     return inp;
@@ -124,8 +126,12 @@ void free2D(char** input){
 }
 
 int main(){
-    printf("x---------------Saksham's Shell---------------x");
+    int x=0;
+    files_path=getcwd(files_path,x);
+    char* path=NULL;
+    printf("x---------------Saksham's Shell---------------x\n");
     while(1){
+        path=files_path;
         char* a=NULL;
         size_t t=0;
         char* b= getcwd(a,t);
@@ -167,11 +173,7 @@ int main(){
                 printf("Error occurred!\n");
             }
             else if(proc==0){
-                char* path=NULL;
-                size_t t=0;
-                path= getcwd(path,t);
-                path=realloc(path,sizeof(path)+9);
-                path=strcat(path,"/mkdir");
+                strcat(path,"/mkdir");
                 execve(path,input, NULL);
             }
             else{

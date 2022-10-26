@@ -15,12 +15,18 @@ void mkdir_p(){
 }
 
 void mkdir_v(char* argv[]){
-    if(mkdir(delim(argv[2]))==0){
-        printf("mkdir: created directory '%s'\n",delim(argv[2]));
+    if(argv[2]==NULL){
+        printf("Expected file name: not found!\n");
+        return;
+    }
+    char* file=delim(argv[2]);
+    if(mkdir(file)==0){
+        printf("mkdir: created directory '%s'\n",file);
     }
     else{
         printf("Error occurred!\n");
     }
+    free(file);
 }
 
 int main(int argc, char* argv[], const char* envp[]){
