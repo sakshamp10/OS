@@ -11,11 +11,14 @@ char* delim(char* input){
 }
 
 void mkdir_p(char* argv[]){
-
+    if(argv[2]==NULL || strcmp(argv[2],"\n")==0 || strcmp(argv[2]," ")==0){
+        printf("Expected file name: not found!\n");
+        return;
+    }
 }
 
 void mkdir_v(char* argv[]){
-    if(argv[2]==NULL || strcmp(argv[2],"\n")){
+    if(argv[2]==NULL || strcmp(argv[2],"\n")==0 || strcmp(argv[2]," ")==0){
         printf("Expected file name: not found!\n");
         return;
     }
@@ -43,6 +46,10 @@ int main(int argc, char* argv[], const char* envp[]){
         }
     }
     else{
+        if(argv[1]==NULL || strcmp(argv[1],"\n")==0 || strcmp(argv[1]," ")==0){
+            printf("Expected file name: not found!\n");
+            return 0;
+        }
         mkdir(delim(argv[1]));
     }
 }
