@@ -141,7 +141,8 @@ int main(){
                 printf("Error occurred!\n");
             }
             else if(proc==0){
-                execve("./mkdir.c",input,environ );
+                char* PATH=getenv(PATH);
+                execve("./mkdir.c",input,  );
             }
             else{
                 wait(NULL);
