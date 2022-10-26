@@ -25,8 +25,9 @@ void mkdir_p(char* argv[]){
     char** files=malloc(size*sizeof(char*));
     int count=0;
     while(file!=NULL){
-        files[count++]=file;
+        files[count]=file;
         printf("count: %d",count);
+        count++;
 //        if(mkdir(delim(file))!=0){
 //            printf("Error in creating the specified directory!: %s\n",delim(file));
 //            return;
@@ -40,6 +41,7 @@ void mkdir_p(char* argv[]){
         printf("%s\n",file);
     }
     files[count]=NULL;
+    printf(" last: %s",files[count]);
     int i=0;
     while(files[i]!=NULL){
         file=files[i];
