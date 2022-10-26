@@ -33,7 +33,7 @@ void mkdir_v(char* argv[]){
 
 int main(int argc, char* argv[], const char* envp[]){
     printf("mkdir was called\n");
-    if(argv[1][0]=='-'){
+    if(argv[1]!=NULL && argv[1][0]=='-'){
         printf("123\n");
         if(argv[1][1]!='p' && argv[1][1]!='v'){
             printf("Invalid option!\n");
