@@ -88,6 +88,30 @@ void pwd(){
     printf("\n");
 }
 
+char* fullpath(char** input){
+    int i;
+    int size=0;
+    char* path=NULL;
+    for(i=1;input[i]!=NULL;i++){
+        int j;
+        for(j=0;input[i][j]!='\0';j++){
+            size++;
+        }
+    }
+    path=malloc(size*sizeof(char));
+    int k=0;
+    for(i=1;input[i]!=NULL;i++){
+        int j;
+        for(j=0;input[i][j]!='\0';j++){
+            path[k]=input[i][j];
+            k++;
+        }
+        path[k]=' ';
+        k++;
+    }
+    path[k]='\0';
+    return path;
+}
 
 
 void free2D(char** input){
@@ -113,7 +137,8 @@ int main(){
 
         }
         else if(strcmp(inp,"cd")==0){
-            char* inp2= delim(input[1]);
+            char* full_path = fullpath(input);
+            char* inp2= delim(full_path);
             if(inp2==NULL){
                 if(chdir("root")!=0 && chdir("~")!=0){
                     printf("Error occurred!\n");
