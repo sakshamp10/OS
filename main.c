@@ -169,6 +169,7 @@ int main(){
                 char* path=NULL;
                 size_t t=0;
                 path= getcwd(path,t);
+                path=realloc(path,sizeof(path)+9);
                 path=strcat(path,"/mkdir.c");
                 execve(path,input, NULL);
             }
