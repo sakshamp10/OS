@@ -11,4 +11,5 @@ int main(){
     char* p="path/to/dest";
     strcat(p,l);
     printf("%s\n",p);
+    return 0;
 }
