@@ -15,7 +15,14 @@ void mkdir_p(char* argv[]){
         printf("Expected file name: not found!\n");
         return;
     }
+    char* curr_dir=NULL;
+    size_t s=0;
+    curr_dir = getcwd(curr_dir,s);
+    int i=0;
+    char* file =
+    while(argv[2][i]!='\0'){
 
+    }
 }
 
 void mkdir_v(char* argv[]){
@@ -35,7 +42,6 @@ void mkdir_v(char* argv[]){
 int main(int argc, char* argv[], const char* envp[]){
 //    printf("mkdir was called\n");
     if(argv[1]!=NULL && argv[1][0]=='-'){
-        printf("123\n");
         if(argv[1][1]!='p' && argv[1][1]!='v'){
             printf("Invalid option!\n");
             return 0;
