@@ -31,7 +31,7 @@ int main(int argc, char* argv[], const char* envp[]){
             return 0;
         }
         else if(argv[1][1]=='m'){
-            mkdir_m();
+//            mkdir_m();
         }
         else if(argv[1][1]=='v'){
             mkdir_v(argv);
