@@ -170,7 +170,7 @@ int main(){
                 size_t t=0;
                 path= getcwd(path,t);
                 path=realloc(path,sizeof(path)+9);
-                path=strcat(path,"/mkdir.c");
+                path=strcat(path,"/mkdir");
                 execve(path,input, NULL);
             }
             else{
