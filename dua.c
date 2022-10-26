@@ -68,35 +68,35 @@ void echo(char **args)
     }
     for(int i=start;args[i]!=NULL;i++)
     {
-        char *st=args[i];
+//        char *st=args[i];
         if(args[i+1]==NULL && flag==1)
         {
-            st=strtok(args[i],"\n");
+            args[i]=strtok(args[i],"\n");
         }
         else
         {
-            st=args[i];
+            args[i]=args[i];
 //            printf("%s",st);
         }
 //        printf("%s",st);
-        for(int j=0;st[j]!='\0';j++)
+        for(int j=0;args[i][j]!='\0';j++)
         {
-            if(st[j]!='\\')
+            if(args[i][j]!='\\')
             {
-                printf("%c",st[j]);
+                printf("%c",args[i][j]);
             }
             else
-            if(strcmp(st[j],'\\')==0)
+            if(args[i][j]=='\\')
             {
-                while(strcmp(st[j],'\\')==0)
+                while(args[i][j]=='\\' && args[i][j+1]=='\\')
                 {
                     printf("%c",'\\');
-                    j++;
+                    j+=2;
                 }
             }
             else
             {
-                printf("%c",st[j]);
+                printf("%c",args[i][j]);
             }
         }
         printf(" ");
