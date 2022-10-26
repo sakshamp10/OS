@@ -32,7 +32,7 @@ void mkdir_v(char* argv[]){
 }
 
 int main(int argc, char* argv[], const char* envp[]){
-    printf("mkdir was called\n");
+//    printf("mkdir was called\n");
     if(argv[1]!=NULL && argv[1][0]=='-'){
         printf("123\n");
         if(argv[1][1]!='p' && argv[1][1]!='v'){
@@ -47,8 +47,6 @@ int main(int argc, char* argv[], const char* envp[]){
         }
     }
     else{
-        printf("123456\n");
-
         if(argv[1]==NULL || strcmp(argv[1],"\n")==0 || strcmp(argv[1]," ")==0){
             printf("Expected file name: not found!\n");
             return 0;
