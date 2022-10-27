@@ -22,19 +22,22 @@ void cat_n(char* argv[]){
         else{
             char c=fgetc(file);
             if(flag==0){
-                printf("check_%d  ",count);
+                printf("        %d  ",count);
                 count++;
                 flag=1;
             }
             while(c!=EOF){
                 if(c=='\n'){
-                    printf("\ncheck2_%d  ",count);
+                    printf("\n      %d  ",count);
                     count++;
                     c= fgetc(file);
                     continue;
                 }
                 printf("%c",c);
                 c= fgetc(file);
+                if(c==EOF){
+                    printf("<{EOF}>");
+                }
             }
 //            printf("%d  ",count);
 //            count++;
