@@ -20,11 +20,11 @@ void cat_n(char* argv[]){
         }
         else{
             char c=fgetc(file);
-            printf("%d  ",count);
+            printf("check_%d  ",count);
             count++;
             while(c!=EOF){
                 if(c=='\n'){
-                    printf("%d  ",count);
+                    printf("\ncheck2_%d  ",count);
                     count++;
                 }
                 printf("%c",c);
