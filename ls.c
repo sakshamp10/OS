@@ -29,12 +29,16 @@ void ls_p(char* argv[]){
     }
     directory= readdir(dir);
     while(directory!=NULL){
-        if(chdir(directory->d_name)==0){
+        if(chdir(directory->d_name)==0) {
             chdir("..");
-            printf("%s/  ",directory->d_name);
+            if (directory->d_name[0]!='.'){
+                printf("%s/  ", directory->d_name);
+            }
         }
         else{
-            printf("%s  ",directory->d_name);
+            if(directory->d_name[0]!='.') {
+                printf("%s  ", directory->d_name);
+            }
         }
         directory= readdir(dir);
     }
