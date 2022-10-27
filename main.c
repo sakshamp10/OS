@@ -236,6 +236,9 @@ int main(){
                 wait(NULL);
             }
         }
+        else if(strcmp(inp,"clear")==0){
+            system("clear");
+        }
         else{
             printf("%s: Command not found\n",inp);
         }
