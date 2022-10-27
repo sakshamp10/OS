@@ -20,8 +20,25 @@ void ls_a(char* argv[]){
     printf("\n");
 }
 
-void ls_l(char* argv[]){
-
+void ls_p(char* argv[]){
+    DIR *dir = opendir(".");
+    struct dirent *directory;
+    if(dir==0){
+        printf("Error occurred in opening or reading the directory contents!\n");
+        return;
+    }
+    directory= readdir(dir);
+    while(directory!=NULL){
+        if(chdir(directory->d_name)==0){
+            chdir("..");
+            printf("%s/  ",directory->d_name);
+        }
+        else{
+            printf("%s  ",directory->d_name);
+        }
+        directory= readdir(dir);
+    }
+    printf("\n");
 }
 
 int main(int argc, char* argv[],char* envp[]){
