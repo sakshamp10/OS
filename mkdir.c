@@ -30,21 +30,6 @@ void mkdir_p(char* argv[]){
         chdir(file);
         file=strtok(NULL,"/");
     }
-//    files[count]=NULL;
-//    printf(" last: %s",files[count]);
-//    int i=0;
-//    while(files[i]!=NULL){
-//        file=files[i];
-//        if(mkdir(delim(file))!=0){
-//            printf("Error in creating the specified directory!: %s\n",delim(file));
-//            return;
-//        }
-//        printf("made: %s\n",file);
-//        i++;
-//        chdir(delim(file));
-//
-//    }
-//    printf("123\n");
     chdir(delim(curr_dir));
     return;
 }
@@ -64,7 +49,6 @@ void mkdir_v(char* argv[]){
 }
 
 int main(int argc, char* argv[], const char* envp[]){
-//    printf("mkdir was called\n");
     if(argv[1]!=NULL && argv[1][0]=='-'){
         if(argv[1][1]!='p' && argv[1][1]!='v'){
             printf("Invalid option!\n");

@@ -187,7 +187,18 @@ int main(){
 
         }
         else if(strcmp(inp,"rm")==0){
-
+            pid_t proc;
+            proc=fork();
+            if(proc<0){
+                printf("Error occurred!\n");
+            }
+            else if(proc==0){
+                strcat(path,"/rm");
+                execve(path,input, NULL);
+            }
+            else{
+                wait(NULL);
+            }
         }
         else if(strcmp(inp,"ls")==0){
             pid_t proc;
