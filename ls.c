@@ -14,8 +14,8 @@ void ls_l(char* argv[]){
 }
 
 int main(int argc, char* argv[],char* envp[]){
-    if(argv[1]!=NULL && strcmp(argv[1][0],'-')==0){
-        if(argv[1][1]!="a" && argv[1][1]!="l"){
+    if(argv[1]!=NULL && argv[1][0]=='-'){
+        if(argv[1][1]!='a' && argv[1][1]!='l'){
             printf("Invalid Options!\n");
             return 0;
         }
@@ -36,7 +36,7 @@ int main(int argc, char* argv[],char* envp[]){
         directory= readdir(dir);
         while(directory!=NULL){
             if(directory->d_name[0]!='.'){
-                printf("%s ",directory->d_name);
+                printf("%s  ",directory->d_name);
             }
             directory= readdir(dir);
         }
