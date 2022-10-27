@@ -31,6 +31,10 @@ void rm_prompt(char* argv[]){
                     break;
                 }
             }
+            else{
+                flag=2;
+                break;
+            }
         }
         directory=readdir(dir);
     }
@@ -69,7 +73,7 @@ void rm_verbose(char* argv[]){
         return;
     }
     else{
-        printf("removed: %s\n",argv[1]);
+        printf("removed: %s\n",argv[2]);
     }
 }
 
