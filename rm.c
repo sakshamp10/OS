@@ -84,15 +84,23 @@ int main(int argc, char* argv[],char* envp[]){
             printf("Invalid Option!\n");
             return 0;
         }
+        else if(argv[1][1]=='v'){
+            printf("verbose\n");
+            rm_verbose(argv);
+        }
+        else if(argv[1][1]=='i'){
+            printf("prompt\n");
+            rm_prompt(argv);
+        }
     }
-    else if(strcmp(argv[1],"-i")==0){
-        printf("prompt\n");
-        rm_prompt(argv);
-    }
-    else if(strcmp(argv[1],"-v")==0){
-        printf("verbose\n");
-        rm_verbose(argv);
-    }
+//    else if(strcmp(argv[1],"-i")==0){
+//        printf("prompt\n");
+//        rm_prompt(argv);
+//    }
+//    else if(strcmp(argv[1],"-v")==0){
+//        printf("verbose\n");
+//        rm_verbose(argv);
+//    }
     else{
         printf("standard\n");
         int flag=0;
