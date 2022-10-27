@@ -8,6 +8,7 @@
 void cat_n(char* argv[]){
     FILE *file;
     int i=1;
+    int flag=0;
     char* curr_file=argv[i];
     int count=1;
     while(curr_file!=NULL){
@@ -20,8 +21,11 @@ void cat_n(char* argv[]){
         }
         else{
             char c=fgetc(file);
-            printf("check_%d  ",count);
-            count++;
+            if(flag==0){
+                printf("check_%d  ",count);
+                count++;
+                flag=1;
+            }
             while(c!=EOF){
                 if(c=='\n'){
                     printf("\ncheck2_%d  ",count);
