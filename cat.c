@@ -51,6 +51,30 @@ void cat_n(char* argv[]){
 }
 
 void cat_E(char* argv[]){
+    FILE *file;
+    int i=1;
+    char* curr_file=argv[i];
+    while(curr_file!=NULL){
+        if(curr_file[strlen(curr_file)-1]=='\n'){
+            curr_file[strlen(curr_file)-1]='\0';
+        }
+        file= fopen(curr_file,"r");
+        if(file==NULL){
+            printf("cat: %s: No such file or directory!\n",curr_file);
+        }
+        else{
+            char c=fgetc(file);
+            while(c!=EOF){
+                if(c=='\n'){
+                    printf("$");
+                }
+                printf("%c",c);
+                c= fgetc(file);
+            }
+        }
+        i++;
+        curr_file=argv[i];
+    }
 
 }
 
