@@ -33,12 +33,12 @@ void ls_p(char* argv[]){
     directory= readdir(dir);
     while(directory!=NULL){
         stat(directory->d_name,&st);
-        if(S_ISDIR(st.st_mode)) {
+        if(S_ISDIR(st.st_mode) && directory->d_name[0]!='.') {
             printf("%s/  ", directory->d_name);
         }
         else{
             if(directory->d_name[0]!='.') {
-                printf("check_%s  ", directory->d_name);
+                printf("%s  ", directory->d_name);
             }
         }
         directory= readdir(dir);
