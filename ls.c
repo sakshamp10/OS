@@ -43,15 +43,15 @@ void ls_p(char* argv[]){
 
 int main(int argc, char* argv[],char* envp[]){
     if(argv[1]!=NULL && argv[1][0]=='-'){
-        if(argv[1][1]!='a' && argv[1][1]!='l'){
+        if(argv[1][1]!='a' && argv[1][1]!='p'){
             printf("Invalid Options!\n");
             return 0;
         }
         else if(argv[1][1]=='a'){
             ls_a(argv);
         }
-        else if(argv[1][1]=='l'){
-            ls_l(argv);
+        else if(argv[1][1]=='p'){
+            ls_p(argv);
         }
     }
     else if(argv[1]==NULL || strcmp(argv[1]," ")==0 || strcmp(argv[1],"\n")==0){
