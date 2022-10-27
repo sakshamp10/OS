@@ -28,6 +28,9 @@ int main(int argc, char* argv[],char* envp[]){
         int i=1;
         char* curr_file=argv[i];
         while(curr_file!=NULL){
+            if(curr_file[strlen(curr_file)-1]=='\n'){
+                curr_file[strlen(curr_file)-1]='\0';
+            }
             file= fopen(curr_file,"r");
             if(file==NULL){
                 printf("cat: %s: No such file or directory!\n",curr_file);
