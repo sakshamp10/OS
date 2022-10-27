@@ -181,10 +181,32 @@ int main(){
             }
         }
         else if(strcmp(inp,"cat")==0){
-
+            pid_t proc;
+            proc=fork();
+            if(proc<0){
+                printf("Error occurred!\n");
+            }
+            else if(proc==0){
+                strcat(path,"/cat");
+                execve(path,input, NULL);
+            }
+            else{
+                wait(NULL);
+            }
         }
         else if(strcmp(inp,"date")==0){
-
+            pid_t proc;
+            proc=fork();
+            if(proc<0){
+                printf("Error occurred!\n");
+            }
+            else if(proc==0){
+                strcat(path,"/date");
+                execve(path,input, NULL);
+            }
+            else{
+                wait(NULL);
+            }
         }
         else if(strcmp(inp,"rm")==0){
             pid_t proc;

@@ -78,7 +78,6 @@ void rm_verbose(char* argv[]){
 }
 
 int main(int argc, char* argv[],char* envp[]){
-    printf("rm was called\n");
     if(argv[1]==NULL || strcmp(argv[1],"\n")==0 || strcmp(argv[1]," ")==0){
         printf("Expected arguments not found!\n");
         return 0;
@@ -89,22 +88,12 @@ int main(int argc, char* argv[],char* envp[]){
             return 0;
         }
         else if(argv[1][1]=='v'){
-            printf("verbose\n");
             rm_verbose(argv);
         }
         else if(argv[1][1]=='i'){
-            printf("prompt\n");
             rm_prompt(argv);
         }
     }
-//    else if(strcmp(argv[1],"-i")==0){
-//        printf("prompt\n");
-//        rm_prompt(argv);
-//    }
-//    else if(strcmp(argv[1],"-v")==0){
-//        printf("verbose\n");
-//        rm_verbose(argv);
-//    }
     else{
         printf("standard\n");
         int flag=0;
