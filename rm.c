@@ -74,6 +74,7 @@ void rm_verbose(char* argv[]){
 }
 
 int main(int argc, char* argv[],char* envp[]){
+    printf("rm was called\n");
     if(argv[1]==NULL || strcmp(argv[1],"\n")==0 || strcmp(argv[1]," ")==0){
         printf("Expected arguments not found!\n");
         return 0;
