@@ -26,7 +26,7 @@ void rm_prompt(char* argv[]){
             char c;
             scanf("%c",&c);
             if(c=='y' || c=='Y'){
-                if(!remove(directory->d_name)){
+                if(remove(directory->d_name)==0){
                     flag=1;
                     break;
                 }
@@ -57,7 +57,7 @@ void rm_verbose(char* argv[]){
                 printf("Cannot delete a directory!\n");
                 return;
             }
-            if(!remove(directory->d_name)){
+            if(remove(directory->d_name)==0){
                 flag=1;
                 break;
             }
@@ -79,19 +79,22 @@ int main(int argc, char* argv[],char* envp[]){
         printf("Expected arguments not found!\n");
         return 0;
     }
-    if(strcmp(argv[1][0],"-")==0){
+    if(argv[1][0]=='-'){
         if(argv[1][1]!='v' && argv[1][1]!='i'){
             printf("Invalid Option!\n");
             return 0;
         }
     }
     else if(strcmp(argv[1],"-i")==0){
+        printf("prompt\n");
         rm_prompt(argv);
     }
     else if(strcmp(argv[1],"-v")==0){
+        printf("verbose\n");
         rm_verbose(argv);
     }
     else{
+        printf("standard\n");
         int flag=0;
         DIR *dir=opendir(".");
         struct stat st;
@@ -107,7 +110,7 @@ int main(int argc, char* argv[],char* envp[]){
                     printf("Cannot delete a directory!\n");
                     return 0;
                 }
-                if(!remove(directory->d_name)){
+                if(remove(directory->d_name)==0){
                     flag=1;
                     break;
                 }
