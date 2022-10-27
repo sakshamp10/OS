@@ -238,11 +238,10 @@ int main(){
         }
         else if(strcmp(inp,"clear")==0){
             system("clear");
-
+            printf("x---------------Saksham's Shell---------------x\n");
         }
         else{
             printf("%s: Command not found\n",inp);
-            printf("x---------------Saksham's Shell---------------x\n");
         }
 
 //        free(inp);
