@@ -30,7 +30,7 @@ int main(int argc, char* argv[],char* envp[]){
         while(curr_file!=NULL){
             file= fopen(curr_file,"r");
             if(file==NULL){
-                printf("cat: %s: No such file or directory!\n");
+                printf("cat: %s: No such file or directory!\n",curr_file);
             }
             else{
                 char c=fgetc(file);
