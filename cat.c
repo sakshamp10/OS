@@ -7,7 +7,7 @@
 
 void cat_n(char* argv[]){
     FILE *file;
-    int i=1;
+    int i=2;
     int flag=0;
     char* curr_file=argv[i];
     int count=1;
@@ -22,7 +22,7 @@ void cat_n(char* argv[]){
         else{
             char c=fgetc(file);
             if(flag==0){
-                printf("        %d  ",count);
+                printf("       %d  ",count);
                 count++;
                 flag=1;
             }
@@ -31,6 +31,9 @@ void cat_n(char* argv[]){
                     printf("\n      %d  ",count);
                     count++;
                     c= fgetc(file);
+                    if(c==EOF){
+                        printf("<{EOF}>");
+                    }
                     continue;
                 }
                 printf("%c",c);
