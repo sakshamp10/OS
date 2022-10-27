@@ -35,7 +35,7 @@ void ls_p(char* argv[]){
         }
         else{
             if(directory->d_name[0]!='.') {
-                printf("%s  ", directory->d_name);
+                printf("check_%s  ", directory->d_name);
             }
         }
         directory= readdir(dir);
