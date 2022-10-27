@@ -5,6 +5,41 @@
 #include <sys/wait.h>
 #include <libgen.h>
 
+void cat_n(char* argv[]){
+    FILE *file;
+    int i=1;
+    char* curr_file=argv[i];
+    int count=1;
+    while(curr_file!=NULL){
+        if(curr_file[strlen(curr_file)-1]=='\n'){
+            curr_file[strlen(curr_file)-1]='\0';
+        }
+        file= fopen(curr_file,"r");
+        if(file==NULL){
+            printf("cat: %s: No such file or directory!\n",curr_file);
+        }
+        else{
+            char c=fgetc(file);
+            while(c!=EOF){
+                printf("%c",c);
+                if(c=='\n'){
+                    printf("%d  ",count);
+                    count++;
+                }
+                c= fgetc(file);
+            }
+            printf("%d  ",count);
+            count++;
+        }
+        i++;
+        curr_file=argv[i];
+    }
+}
+
+void cat_E(char* argv[]){
+
+}
+
 
 int main(int argc, char* argv[],char* envp[]){
     if(argv[1]==NULL || strcmp(argv[1]," ")==0|| strcmp(argv[1],"\n")==0){

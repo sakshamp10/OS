@@ -5,20 +5,16 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <libgen.h>
-char* cd_read_line()
-{
-    char *line=NULL;
-    size_t bufl=0;
-    getline(&line,&bufl,stdin);
-    return line;
-}
-char** cd_split_line(char *line)
+#include <dirent.h>
+#include <errno.h>
+#include <sys/stat.h>
+int main(int agrc,char *argv[])
 {
     int len=0;
     int cap=16;
     char **tok=malloc(16*sizeof(char *));
     char *delim=" \t\r\n";
-    char *token=strtok(line,delim);
+    char *token=strtok(argv[1],delim);
     while(token!=NULL)
     {
         tok[len]=token;
@@ -31,133 +27,99 @@ char** cd_split_line(char *line)
         token=strtok(NULL,delim);
     }
     tok[len]=NULL;
-    return tok;
-}
-void pwd()
-{
-    char cwdarr[256];
-    if(getcwd(cwdarr, sizeof(cwdarr))==NULL)
+    if(strcmp(tok[0],"-i")!=0 && strcmp(tok[0],"-v")!=0)
     {
-        perror("directory error ");
-    }
-    else
-    {
-        printf("The current working directory is: %s\n", cwdarr);
-    }
-}
-void echo(char **args)
-{
-    int flag=0;
-    if(args[1]==NULL)
-    {
-        printf("\n");
-        return;
-    }
-    if(strcmp(args[1],"-n")==0)
-    {
-        flag=1;
-    }
-    int start=1;
-    if(flag==1)
-    {
-        start=2;
-    }
-    else
-    {
-        start=1;
-    }
-    for(int i=start;args[i]!=NULL;i++)
-    {
-//        char *st=args[i];
-        if(args[i+1]==NULL && flag==1)
+        int checkrem=0;
+        DIR *dir=opendir(".");
+        struct stat st;
+        struct dirent *dirr;
+        dirr=readdir(dir);
+        while(dir!=NULL)
         {
-            args[i]=strtok(args[i],"\n");
-        }
-        else
-        {
-            args[i]=args[i];
-//            printf("%s",st);
-        }
-//        printf("%s",st);
-        for(int j=0;args[i][j]!='\0';j++)
-        {
-            if(args[i][j]!='\\')
+            if(strcmp(dirr->d_name,tok[0])==0)
             {
-                printf("%c",args[i][j]);
-            }
-            else
-            if(args[i][j]=='\\')
-            {
-                while(args[i][j]=='\\' && args[i][j+1]=='\\')
+                stat(dirr->d_name,&st);
+                if(!(S_ISREG(st.st_mode)))
                 {
-                    printf("%c",'\\');
-                    j+=1;
+                    printf("Cannot delete the directory\n");
+                }
+                int r=remove(dirr->d_name);
+                if(r!=0){
+                    printf("Could not delete file\n");
                 }
             }
-            else
-            {
-                printf("%c",args[i][j]);
-            }
-        }
-        printf(" ");
-    }
-    printf("\n");
 
-}
-void cd_exec(char **args)
-{
-    if(strcmp(args[0],"pwd")==0 || strcmp(args[0],"pwd\n")==0)
+            dirr=readdir(dir);
+        }
+    }
+    if(strcmp(tok[0],"-i")==0)
     {
-        pwd();
+        int checkrem=0;
+        DIR *dir=opendir(".");
+        struct stat st;
+        struct dirent *dirr;
+        dirr=readdir(dir);
+        while(dir!=NULL)
+        {
+            if(strcmp(dirr->d_name,tok[1])==0)
+            {
+                stat(dirr->d_name,&st);
+                if(!(S_ISREG(st.st_mode)))
+                {
+                    printf("Cannot delete the directory\n");
+                }
+                char inp;
+                printf("Do you want to remove the file: %s?[Y/n] ",tok[1]);
+                scanf("%c",&inp);
+                if(inp=='Y' || inp=='y')
+                {
+                    int r=remove(dirr->d_name);
+                    if(r==0)
+                    {
+                        checkrem=1;
+                        break;
+                    }
+                }
+            }
+
+            dirr=readdir(dir);
+        }
+        if(checkrem==0)
+        {
+            printf("Could not delete directory");
+        }
     }
     else
-    if(strcmp(args[0],"echo")==0)
+    if(strcmp(tok[0],"-v")==0)
     {
-        echo(args);
-    }
-    /*pid_t child_pid=fork();
-    if(child_pid==0)
-    {
-        execvp(args[0],args);
-        perror("cd");
-        exit(1);
-    }
-    else
-    if(child_pid>0)
-    {
-        int status;
-        do
+        int checkrem=0;
+        DIR *dir=opendir(".");
+        struct stat st;
+        struct dirent *dirr;
+        dirr=readdir(dir);
+        while(dir!=NULL)
         {
-            waitpid(child_pid, &status,WUNTRACED);
+            if(strcmp(dirr->d_name,tok[1])==0)
+            {
+                stat(dirr->d_name,&st);
+                if(!(S_ISREG(st.st_mode)))
+                {
+                    printf("Cannot delete the directory\n");
+                }
+                int r=remove(dirr->d_name);
+                if(r==0)
+                {
+                    printf("Directory deleted successfully");
+                    checkrem=1;
+                    break;
+                }
+            }
+
+            dirr=readdir(dir);
         }
-        while(!WIFEXITED(status) && !WIFSIGNALED(status));
-    }
-    else
-    {
-        perror("cd");
-    }*/
-}
-int main()
-{
-    printf("Chaitanya's shell...........\n");
-    while(1)
-    {
-        //printf("Chaitanya's shell.........\n");
-        char *a=NULL;
-        char *i=getcwd(a,0);
-        printf("[ %s ]$ ",basename(i));
-        char *line=cd_read_line();
-        char **tok=cd_split_line(line);
-        if(strcmp(tok[0],"exit")==0)
+        if(checkrem==0)
         {
-            break;
+            printf("Could not delete directory");
         }
-        if(tok[0]!=NULL)
-        {
-            cd_exec(tok);
-        }
-        free(tok);
-        free(line);
     }
-    return 0;
 }
