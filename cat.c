@@ -52,7 +52,7 @@ int main(int argc, char* argv[],char* envp[]){
             return 0;
         }
         else if(argv[1][1]=='n'){
-
+            cat_n(argv);
         }
         else if(argv[1][1]=='E'){
 
