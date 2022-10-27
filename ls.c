@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <dirent.h>
+#include <sys/stat.h>
+
 
 void ls_a(char* argv[]){
     DIR *dir = opendir(".");
@@ -23,14 +25,15 @@ void ls_a(char* argv[]){
 void ls_p(char* argv[]){
     DIR *dir = opendir(".");
     struct dirent *directory;
+    struct stat st;
     if(dir==0){
         printf("Error occurred in opening or reading the directory contents!\n");
         return;
     }
     directory= readdir(dir);
     while(directory!=NULL){
-        if(chdir(directory->d_name)==0 && directory->d_name[0]!='.') {
-            chdir("..");
+        stat(directory->d_name,&st);
+        if(S_ISDIR(st.st_mode)) {
             printf("%s/  ", directory->d_name);
         }
         else{
