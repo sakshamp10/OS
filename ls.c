@@ -14,10 +14,6 @@ void ls_l(char* argv[]){
 }
 
 int main(int argc, char* argv[],char* envp[]){
-    if(argv[1]==NULL || strcmp(argv[1],"\n")==0 || strcmp(argv[1]," ")==0){
-        printf("No argument found for file name!\n");
-        return 0;
-    }
     if(argv[1]!=NULL && strcmp(argv[1][0],'-')==0){
         if(argv[1][1]!="a" && argv[1][1]!="l"){
             printf("Invalid Options!\n");
@@ -30,8 +26,8 @@ int main(int argc, char* argv[],char* envp[]){
             ls_l(argv);
         }
     }
-    else{
-        DIR *dir = opendir(argv[1]);
+    else if(argv[1]==NULL || strcmp(argv[1]," ")==0 || strcmp(argv[1],"\n")==0){
+        DIR *dir = opendir(".");
         struct dirent *directory;
         if(dir==0){
             printf("Error occurred in opening or reading the directory contents!\n");
