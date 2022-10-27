@@ -6,7 +6,18 @@
 #include <dirent.h>
 
 void ls_a(char* argv[]){
-
+    DIR *dir = opendir(".");
+    struct dirent *directory;
+    if(dir==0){
+        printf("Error occurred in opening or reading the directory contents!\n");
+        return;
+    }
+    directory= readdir(dir);
+    while(directory!=NULL){
+        printf("%s  ",directory->d_name);
+        directory= readdir(dir);
+    }
+    printf("\n");
 }
 
 void ls_l(char* argv[]){
