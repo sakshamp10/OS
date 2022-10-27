@@ -20,16 +20,18 @@ void cat_n(char* argv[]){
         }
         else{
             char c=fgetc(file);
+            printf("%d  ",count);
+            count++;
             while(c!=EOF){
-                printf("%c",c);
                 if(c=='\n'){
                     printf("%d  ",count);
                     count++;
                 }
+                printf("%c",c);
                 c= fgetc(file);
             }
-            printf("%d  ",count);
-            count++;
+//            printf("%d  ",count);
+//            count++;
         }
         i++;
         curr_file=argv[i];
