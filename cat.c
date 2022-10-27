@@ -52,7 +52,7 @@ void cat_n(char* argv[]){
 
 void cat_E(char* argv[]){
     FILE *file;
-    int i=1;
+    int i=2;
     char* curr_file=argv[i];
     while(curr_file!=NULL){
         if(curr_file[strlen(curr_file)-1]=='\n'){
@@ -93,7 +93,7 @@ int main(int argc, char* argv[],char* envp[]){
             cat_n(argv);
         }
         else if(argv[1][1]=='E'){
-
+            cat_E(argv);
         }
     }
     else{
