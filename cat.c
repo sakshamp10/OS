@@ -26,6 +26,8 @@ void cat_n(char* argv[]){
                 if(c=='\n'){
                     printf("\ncheck2_%d  ",count);
                     count++;
+                    c= fgetc(file);
+                    continue;
                 }
                 printf("%c",c);
                 c= fgetc(file);
