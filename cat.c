@@ -48,6 +48,7 @@ void cat_n(char* argv[]){
         i++;
         curr_file=argv[i];
     }
+    printf("\n");
 }
 
 void cat_E(char* argv[]){
