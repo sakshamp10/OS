@@ -20,9 +20,8 @@ void cat_n(char* argv[]){
             printf("cat: %s: No such file or directory!\n",curr_file);
         }
         else{
-
+            char c= fgetc(file);
             char c_next=fgetc(file);
-            char c=c_next;
             printf("      %d  ",count);
             count++;
             while(c!=EOF){
