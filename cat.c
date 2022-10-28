@@ -38,9 +38,9 @@ void cat_n(char* argv[]){
                 printf("%c",c);
                 c =c_next;
                 c_next = fgetc(file);
-                if(c==EOF){
-                    printf("<{EOF1}>");
-                }
+//                if(c==EOF){
+//                    printf("<{EOF1}>");
+//                }
             }
 //            printf("%d  ",count);
 //            count++;
