@@ -30,20 +30,12 @@ void cat_n(char* argv[]){
                     count++;
                     c =c_next;
                     c_next = fgetc(file);
-                    if(c==EOF){
-                        printf("<{EOF}>");
-                    }
                     continue;
                 }
                 printf("%c",c);
                 c =c_next;
                 c_next = fgetc(file);
-//                if(c==EOF){
-//                    printf("<{EOF1}>");
-//                }
             }
-//            printf("%d  ",count);
-//            count++;
         }
         i++;
         curr_file=argv[i];
