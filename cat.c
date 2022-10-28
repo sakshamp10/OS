@@ -32,14 +32,14 @@ void cat_n(char* argv[]){
                     count++;
                     c= fgetc(file);
                     if(c==EOF){
-//                        printf("<{EOF}>");
+                        printf("<{EOF}>");
                     }
                     continue;
                 }
                 printf("%c",c);
                 c= fgetc(file);
                 if(c==EOF){
-//                    printf("<{EOF}>");
+                    printf("<{EOF1}>");
                 }
             }
 //            printf("%d  ",count);
