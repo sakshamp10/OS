@@ -11,7 +11,7 @@ int main(int argc, char* argv[],char* envp[]){
     if(argv[1]==NULL || strcmp(argv[1],"\n")==0 || strcmp(argv[1]," ")==0){
         struct tm *tm;
         time_t t= time(NULL);
-        localtime_r(&t,&tm);
+        tm=localtime(&t);
         char *day,*month;
         if(tm->tm_wday==0){
             day="Sunday";
