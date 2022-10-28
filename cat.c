@@ -22,7 +22,7 @@ void cat_n(char* argv[]){
         else{
             char c=fgetc(file);
             if(flag==0){
-                printf("       %d  ",count);
+                printf("      %d  ",count);
                 count++;
                 flag=1;
             }
@@ -32,14 +32,14 @@ void cat_n(char* argv[]){
                     count++;
                     c= fgetc(file);
                     if(c==EOF){
-                        printf("<{EOF}>");
+//                        printf("<{EOF}>");
                     }
                     continue;
                 }
                 printf("%c",c);
                 c= fgetc(file);
                 if(c==EOF){
-                    printf("<{EOF}>");
+//                    printf("<{EOF}>");
                 }
             }
 //            printf("%d  ",count);
