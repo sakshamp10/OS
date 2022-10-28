@@ -95,7 +95,7 @@ int main(int argc, char* argv[],char* envp[]){
         }
     }
     else{
-        printf("standard\n");
+//        printf("standard\n");
         int flag=0;
         DIR *dir=opendir(".");
         struct stat st;
