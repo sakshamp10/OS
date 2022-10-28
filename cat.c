@@ -20,24 +20,25 @@ void cat_n(char* argv[]){
             printf("cat: %s: No such file or directory!\n",curr_file);
         }
         else{
-            char c=fgetc(file);
-            if(flag==0){
-                printf("      %d  ",count);
-                count++;
-                flag=1;
-            }
+
+            char c_next=fgetc(file);
+            char c=c_next;
+            printf("      %d  ",count);
+            count++;
             while(c!=EOF){
-                if(c=='\n'){
+                if(c=='\n' && c_next!=EOF){
                     printf("\n      %d  ",count);
                     count++;
-                    c= fgetc(file);
+                    c =c_next;
+                    c_next = fgetc(file);
                     if(c==EOF){
                         printf("<{EOF}>");
                     }
                     continue;
                 }
                 printf("%c",c);
-                c= fgetc(file);
+                c =c_next;
+                c_next = fgetc(file);
                 if(c==EOF){
                     printf("<{EOF1}>");
                 }
