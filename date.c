@@ -12,6 +12,9 @@ int main(int argc, char* argv[],char* envp[]){
         struct tm *tm;
         time_t t= time(NULL);
         tm=localtime(&t);
+        if(tm==NULL){
+            printf("Unexpected error occurred!\n");
+        }
         char *day,*month;
         if(tm->tm_wday==0){
             day="Sunday";
@@ -47,7 +50,7 @@ int main(int argc, char* argv[],char* envp[]){
         if(tm->tm_mon==10) month="November";
         if(tm->tm_mon==11) month="December";
 
-        printf("%s %d %s %d %02d:%02d:%02d %s",day,tm->tm_mday,month,tm->tm_year+1900,tm->tm_hour,tm->tm_min,tm->tm_sec,tzname[1]);
+        printf("%s %d %s %d %02d:%02d:%02d %s\n",day,tm->tm_mday,month,tm->tm_year+1900,tm->tm_hour,tm->tm_min,tm->tm_sec,tzname[1]);
 
     }
 }
