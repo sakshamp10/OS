@@ -1,125 +1,41 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/wait.h>
 #include <unistd.h>
+#include <sys/wait.h>
 #include <libgen.h>
-#include <dirent.h>
-#include <errno.h>
-#include <sys/stat.h>
-int main(int agrc,char *argv[])
-{
-    int len=0;
-    int cap=16;
-    char **tok=malloc(16*sizeof(char *));
-    char *delim=" \t\r\n";
-    char *token=strtok(argv[1],delim);
-    while(token!=NULL)
-    {
-        tok[len]=token;
-        len++;
-        if(len>=cap)
-        {
-            cap=(int)(cap*1.5);
-            tok=realloc(tok,cap*sizeof(char*));
-        }
-        token=strtok(NULL,delim);
+void cd(char **args) {
+    int ct = 0;
+    for (int i = 1; args[i] != NULL; i++) {
+        ct++;
     }
-    tok[len]=NULL;
-    if(strcmp(tok[0],"-i")!=0 && strcmp(tok[0],"-v")!=0)
-    {
-        int checkrem=0;
-        DIR *dir=opendir(".");
-        struct stat st;
-        struct dirent *dirr;
-        dirr=readdir(dir);
-        while(dir!=NULL)
-        {
-            if(strcmp(dirr->d_name,tok[0])==0)
-            {
-                stat(dirr->d_name,&st);
-                if(!(S_ISREG(st.st_mode)))
-                {
-                    printf("Cannot delete the directory\n");
+    if (ct > 1) {
+        printf("too many arguments\n");
+        return;
+    } else {
+        if (ct == 1) {
+            if (strcmp(args[1], "/") == 0) {
+                chdir("/");
+            } else if (strcmp(args[1], "~") == 0 || strcmp(args[1], "root") == 0) {
+                chdir("~");
+            } else {
+                char *path;
+                path = (char *) malloc(256 * sizeof(char));
+                int f = 0;
+                for (int i = 0; parentcwd[i] != '\0'; i++) {
+                    path[f++] = parentcwd[i];
                 }
-                int r=remove(dirr->d_name);
-                if(r!=0){
-                    printf("Could not delete file\n");
+                path[f++] = '/';
+                for (int i = 0; args[1][i] != '\0'; i++) {
+                    path[f++] = args[1][i];
+                }
+                int suc = chdir(path);
+                if (suc == -1) {
+                    printf("No such file or directory");
                 }
             }
-
-            dirr=readdir(dir);
-        }
-    }
-    if(strcmp(tok[0],"-i")==0)
-    {
-        int checkrem=0;
-        DIR *dir=opendir(".");
-        struct stat st;
-        struct dirent *dirr;
-        dirr=readdir(dir);
-        while(dir!=NULL)
-        {
-            if(strcmp(dirr->d_name,tok[1])==0)
-            {
-                stat(dirr->d_name,&st);
-                if(!(S_ISREG(st.st_mode)))
-                {
-                    printf("Cannot delete the directory\n");
-                }
-                char inp;
-                printf("Do you want to remove the file: %s?[Y/n] ",tok[1]);
-                scanf("%c",&inp);
-                if(inp=='Y' || inp=='y')
-                {
-                    int r=remove(dirr->d_name);
-                    if(r==0)
-                    {
-                        checkrem=1;
-                        break;
-                    }
-                }
-            }
-
-            dirr=readdir(dir);
-        }
-        if(checkrem==0)
-        {
-            printf("Could not delete directory");
-        }
-    }
-    else
-    if(strcmp(tok[0],"-v")==0)
-    {
-        int checkrem=0;
-        DIR *dir=opendir(".");
-        struct stat st;
-        struct dirent *dirr;
-        dirr=readdir(dir);
-        while(dir!=NULL)
-        {
-            if(strcmp(dirr->d_name,tok[1])==0)
-            {
-                stat(dirr->d_name,&st);
-                if(!(S_ISREG(st.st_mode)))
-                {
-                    printf("Cannot delete the directory\n");
-                }
-                int r=remove(dirr->d_name);
-                if(r==0)
-                {
-                    printf("Directory deleted successfully");
-                    checkrem=1;
-                    break;
-                }
-            }
-
-            dirr=readdir(dir);
-        }
-        if(checkrem==0)
-        {
-            printf("Could not delete directory");
+        } else if (ct == 0) {
+            chdir("~");
         }
     }
 }
