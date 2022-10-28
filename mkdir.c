@@ -28,6 +28,7 @@ void mkdir_p(char* argv[]){
         if(mkdir(file)!=0){
             if(errno==EEXIST){
                 chdir(file);
+                file=strtok(NULL,"/");
                 continue;
             }
 //            printf("Error in creating the specified directory!: %s\n",file);
