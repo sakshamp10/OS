@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <libgen.h>
+#include <errno.h>
 
 char* delim(char* input){
     char* inp=strtok(input,"\n");
@@ -11,6 +12,7 @@ char* delim(char* input){
 }
 
 void mkdir_p(char* argv[]){
+    int errno;
     if(argv[2]==NULL || strcmp(argv[2],"\n")==0 || strcmp(argv[2]," ")==0){
         printf("Expected file name: not found!\n");
         return;
@@ -24,7 +26,11 @@ void mkdir_p(char* argv[]){
             file[strlen(file)-1] = '\0';
         }
         if(mkdir(file)!=0){
-            printf("Error in creating the specified directory!: %s\n",file);
+            if(errno==EEXIST){
+                chdir(file);
+                continue;
+            }
+//            printf("Error in creating the specified directory!: %s\n",file);
             return;
         }
         chdir(file);
