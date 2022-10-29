@@ -39,7 +39,7 @@ int main(int argc, char* argv[],char* envp[]){
         if(tm->tm_mon==11) month="December";
         printf("%s %d %s %d %02d:%02d:%02d %s\n",day,tm->tm_mday,month,tm->tm_year+1900,tm->tm_hour,tm->tm_min,tm->tm_sec,tzname[0]);
     }
-    else if(strcmp(argv[1],"-u\n")==0){
+    else if(strcmp(argv[1],"-u\n")==0 || strcmp(argv[1],"-u")==0){
         utcTime= gmtime(&t);
         char *day,*month;
 
@@ -64,10 +64,11 @@ int main(int argc, char* argv[],char* envp[]){
         if(utcTime->tm_mon==9) month="October";
         if(utcTime->tm_mon==10) month="November";
         if(utcTime->tm_mon==11) month="December";
-        printf("%s %d %s %d %02d:%02d:%02d %s\n",day,utcTime->tm_mday,month,utcTime->tm_year+1900,utcTime->tm_hour,utcTime->tm_min,utcTime->tm_sec,tzname[1]);
+        printf("%s %d %s %d %02d:%02d:%02d UTC\n",day,utcTime->tm_mday,month,utcTime->tm_year+1900,utcTime->tm_hour,utcTime->tm_min,utcTime->tm_sec);
     }
-    else if(strcmp(argv[1],"-R\n")==0){
+    else if(strcmp(argv[1],"-R\n")==0 || strcmp(argv[1],"-R")==0){
         tm= localtime(&t);
-        printf("%s\n", asctime(tm));
+        utcTime= gmtime(&t);
+        printf("%s %s\n", asctime(tm),tzname[1]);
     }
 }
