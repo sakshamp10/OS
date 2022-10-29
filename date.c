@@ -69,6 +69,6 @@ int main(int argc, char* argv[],char* envp[]){
     else if(strcmp(argv[1],"-R\n")==0 || strcmp(argv[1],"-R")==0){
         tm= localtime(&t);
         utcTime= gmtime(&t);
-        printf("%s %s\n", asctime(tm),tzname[1]);
+        printf("%s %s\n", asctime(tm),tzname[0]);
     }
 }
