@@ -50,7 +50,7 @@ int main(int argc, char* argv[],char* envp[]){
         if(tm->tm_mon==10) month="November";
         if(tm->tm_mon==11) month="December";
 
-        printf("%s %d %s %d %02d:%02d:%02d %s\n",day,tm->tm_mday,month,tm->tm_year+1900,tm->tm_hour,tm->tm_min,tm->tm_sec,tzname[0]);
+        printf("%s %d %s %d %02d:%02d:%02d %s [1]%s\n",day,tm->tm_mday,month,tm->tm_year+1900,tm->tm_hour,tm->tm_min,tm->tm_sec,tzname[0],tzname[1]);
 
     }
 }
