@@ -67,8 +67,32 @@ int main(int argc, char* argv[],char* envp[]){
         printf("%s %d %s %d %02d:%02d:%02d UTC\n",day,utcTime->tm_mday,month,utcTime->tm_year+1900,utcTime->tm_hour,utcTime->tm_min,utcTime->tm_sec);
     }
     else if(strcmp(argv[1],"-R\n")==0 || strcmp(argv[1],"-R")==0){
-        tm= localtime(&t);
         utcTime= gmtime(&t);
-        printf("%s %s\n", asctime(tm),tzname[0]);
+        char *zone=tzname[1];
+        tm= localtime(&t);
+        char *day,*month;
+        if(tm->tm_wday==0) day="Sun";
+        else if(tm->tm_wday==1) day="Mon";
+        else if(tm->tm_wday==2) day="Tue";
+        else if(tm->tm_wday==3) day="Wed";
+        else if(tm->tm_wday==4) day="Thu";
+        else if(tm->tm_wday==5) day="Fri";
+        else if(tm->tm_wday==6)day="Sat";
+
+
+        if(tm->tm_mon==0) month="Jan";
+        if(tm->tm_mon==1) month="Feb";
+        if(tm->tm_mon==2) month="Mar";
+        if(tm->tm_mon==3) month="Apr";
+        if(tm->tm_mon==4) month="May";
+        if(tm->tm_mon==5) month="Jun";
+        if(tm->tm_mon==6) month="Jul";
+        if(tm->tm_mon==7) month="Aug";
+        if(tm->tm_mon==8) month="Sep";
+        if(tm->tm_mon==9) month="Oct";
+        if(tm->tm_mon==10) month="Nov";
+        if(tm->tm_mon==11) month="Dec";
+
+        printf("%s %d %s %d %02d:%02d:%02d %s\n",day,tm->tm_mday,month,tm->tm_year+1900,tm->tm_hour,tm->tm_min,tm->tm_sec,zone);
     }
 }
