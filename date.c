@@ -66,7 +66,7 @@ int main(int argc, char* argv[],char* envp[]){
         if(utcTime->tm_mon==11) month="December";
         printf("%s %d %s %d %02d:%02d:%02d %s\n",day,utcTime->tm_mday,month,utcTime->tm_year+1900,utcTime->tm_hour,utcTime->tm_min,utcTime->tm_sec,tzname[1]);
     }
-    else if(strcmp(argv[1],"-R")==0){
+    else if(strcmp(argv[1],"-R\n")==0){
         tm= localtime(&t);
         printf("%s\n", asctime(tm));
     }
