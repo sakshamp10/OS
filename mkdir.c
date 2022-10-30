@@ -69,11 +69,19 @@ int main(int argc, char* argv[], const char* envp[]){
         }
     }
     else{
+        int errno;
         if(argv[1]==NULL || strcmp(argv[1],"\n")==0 || strcmp(argv[1]," ")==0){
             printf("Expected file name: not found!\n");
             return 0;
         }
         if(mkdir(delim(argv[1]))!=0){
+            if(argv[1][strlen(argv[1])-1]=='\n'){
+                argv[1][strlen(argv[1])-1]='\0';
+            }
+            if(errno==EEXIST){
+                printf("mkdir: %s: directory already exists\n",argv[1]);
+                return 0;
+            }
             printf("Could not create directory due to unexpected error!\n");
         }
     }
