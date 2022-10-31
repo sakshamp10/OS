@@ -252,17 +252,17 @@ void pwd(){
 char* fullpath(char** input){
     int i;
     int size=0;
-    int k=1;
+    int p=1;
     char* path=NULL;
     if(input[1][0]=='-'){
         if(input[1][1]!='P' && input[1][1]!='L'){
             return NULL;
         }
         else{
-            k++;
+            p++;
         }
     }
-    for(i=k;input[i]!=NULL;i++){
+    for(i=p;input[i]!=NULL;i++){
         int j;
         for(j=0;input[i][j]!='\0';j++){
             size++;
