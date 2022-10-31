@@ -34,8 +34,10 @@ void* mkdirThread(void *arg){
     char* curr_path= getcwd(n,s);
     char* compile=(char*)malloc(400*sizeof(char));
     snprintf(compile,4000,"gcc %s/mkdir.c -o mkdir",curr_path);
-    system(compile);
-    system(command);
+    printf("%s\n",compile);
+//    system(compile);
+//    system(command);
+    return NULL;
 }
 
 void* dateThread(){
