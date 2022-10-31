@@ -8,6 +8,10 @@
 
 
 int main(int argc, char* argv[],char* envp[]){
+    if(argv[2]!=NULL && strcmp(argv[2]," ")!=0 && strcmp(argv[2],"\n")!=0){
+        printf("Invalid arguments!\n");
+        return 0;
+    }
     struct tm *tm,*utcTime;
     time_t t= time(NULL);
     if(argv[1]==NULL || strcmp(argv[1],"\n")==0 || strcmp(argv[1]," ")==0){
