@@ -29,6 +29,9 @@ void* lsThread(){
 
 void* mkdirThread(void *arg){
     char* command= *(char**)arg;
+    if(command[strlen(command)-1]=='\n'){
+        command[strlen(command)-1]='\0';
+    }
     char* n=NULL;
     int s=0;
     char* curr_path= getcwd(n,s);
