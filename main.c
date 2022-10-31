@@ -191,11 +191,12 @@ void echo(char** input){
                 if(temp[j]!='\\')
                     printf("%c",temp[j]);
                 else{
+                    int count=0;
                     if(temp[j+1]=='\\'){
                         while(temp[j+1]=='\\'){
                             j++;
+                            count++;
                         }
-                        int count=j/2;
                         while(count--){
                             printf("\\");
                         }
@@ -216,11 +217,12 @@ void echo(char** input){
             if(input[i][j]!='\\')
                 printf("%c",input[i][j]);
             else{
+                int count=0;
                 if(input[i][j+1]=='\\'){
                     while(input[i][j+1]=='\\'){
                         j++;
+                        count++;
                     }
-                    int count=j/2;
                     while(count--){
                         printf("\\");
                     }
