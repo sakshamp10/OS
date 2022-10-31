@@ -335,10 +335,8 @@ int main(){
             pwd();
         } else if (strcmp(inp, "exit") == 0) {
             break;
-        } else if (strcmp(inp, "fuckdua") == 0) {
-            printf("yes, absolutely, fuck dua!!\n");
-            break;
-        } else if (strcmp(inp, "mkdir") == 0) {
+        }
+        else if (strcmp(inp, "mkdir") == 0) {
             pid_t proc;
             proc = fork();
             if (proc < 0) {
