@@ -290,6 +290,10 @@ int main(){
         } else if (strcmp(inp, "echo") == 0) {
             echo(input);
         } else if (strcmp(inp, "pwd") == 0) {
+            if(strcmp(input[1],"-P")!=0 && strcmp(input[1],"-L")!=0){
+                printf("Invalid Options!\n");
+                continue;
+            }
             pwd();
         } else if (strcmp(inp, "exit") == 0) {
             break;
