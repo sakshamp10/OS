@@ -180,8 +180,8 @@ void echo(char** input){
         if(input[i+1]==NULL && nflag==1){
             char* temp=delim(input[i]);
             for(int j=0;temp[j]!='\0';j++){
-                if (input[i][j] == '$') {
-                    if (input[i][j + 1] == '$') {
+                if (temp[j] == '$') {
+                    if (temp[j + 1] == '$') {
                         printf("%d", (int) getpid());
                         i++;
                     }
