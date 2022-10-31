@@ -182,7 +182,8 @@ void echo(char** input){
             for(int j=0;temp[j]!='\0';j++){
                 if (temp[j] == '$') {
                     if (temp[j + 1] == '$') {
-                        printf("%d", (int) getpid());
+                        pid_t id=getpid();
+                        printf("%d", (int) id);
                         i++;
                         continue;
                     }
@@ -203,7 +204,8 @@ void echo(char** input){
         for(int j=0;input[i][j]!='\0';j++){
             if (input[i][j] == '$') {
                 if (input[i][j + 1] == '$') {
-                    printf("%d", (int) getpid());
+                    pid_t id=getpid();
+                    printf("%d", (int)id);
                     i++;
                     continue;
                 }
