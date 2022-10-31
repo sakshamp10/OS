@@ -184,6 +184,7 @@ void echo(char** input){
                     if (temp[j + 1] == '$') {
                         printf("%d", (int) getpid());
                         i++;
+                        continue;
                     }
                 }
                 if(temp[j]!='\\')
