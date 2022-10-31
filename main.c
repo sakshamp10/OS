@@ -197,6 +197,7 @@ void echo(char** input){
                             j++;
                             count++;
                         }
+                        count/=2;
                         char c='\\';
                         while(count--){
                             printf("%c",c);
@@ -220,10 +221,11 @@ void echo(char** input){
             else{
                 int count=0;
                 if(input[i][j+1]=='\\'){
-                    while(input[i][j+1]=='\\'){
+                    while(input[i][j+1]=='\\') {
                         j++;
                         count++;
                     }
+                    count/=2;
                     char c='\\';
                     while(count--){
                         printf("%c",c);
