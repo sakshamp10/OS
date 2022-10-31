@@ -4,12 +4,42 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <libgen.h>
+#include <pthread.h>
+
 
 char* files_path=NULL;
 
 char* delim(char* input){
     char* inp=strtok(input,"\n");
     return inp;
+}
+
+
+void* catThread(){
+
+}
+
+void* rmThread(){
+
+}
+
+void* lsThread(){
+
+}
+
+void* mkdirThread(void *arg){
+    char* command= (char*)arg;
+    char* n=NULL;
+    size_t s=0;
+    char* curr_path= getcwd(n,s);
+    char* compile=(char*)malloc(400*sizeof(char));
+    snprintf(compile,4000,"gcc %s/mkdir.c -o mkdir",curr_path);
+    system(compile);
+    system(command);
+}
+
+void* dateThread(){
+
 }
 
 char** input_line(){
@@ -183,6 +213,21 @@ int main(){
             else{
                 wait(NULL);
             }
+        }
+        else if(strcmp(inp,"mkdir&t")==0){
+            pthread_t t;
+            char *pass;int y=0;
+            pass=(char *)malloc(256*sizeof(char));int p=0;
+            for(int i=0;input[i]!=NULL;i++)
+            {
+                strcat(pass,input[i]);
+                strcat(pass," ");
+            }
+            char *nowpass;
+            nowpass=(char *)malloc(256*sizeof(char));int l=0;
+            for(int i=0;i<strlen(pass)-1;i++)
+                nowpass[l++]=pass[i];
+            pthread_create(&t,NULL,&mkdirThread,&nowpass);
         }
         else if(strcmp(inp,"cat")==0){
             pid_t proc;
