@@ -252,12 +252,17 @@ void pwd(){
 char* fullpath(char** input){
     int i;
     int size=0;
+    int k=1;
     char* path=NULL;
-    if(strcmp(input[1],"-P")!=0 && strcmp(input[1],"-L")!=0){
-        printf("Invalid Option!\n");
-        return NULL;
+    if(input[1][0]=='-'){
+        if(input[1][1]!='P' && input[1][1]!='L'){
+            return NULL;
+        }
+        else{
+            k++;
+        }
     }
-    for(i=1;input[i]!=NULL;i++){
+    for(i=k;input[i]!=NULL;i++){
         int j;
         for(j=0;input[i][j]!='\0';j++){
             size++;
