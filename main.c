@@ -463,7 +463,7 @@ int main(){
             printf("%s: Command not found\n",inp);
         }
 
-        free(inp);
+//        free(inp);
 //        free2D(input);
     }
     return 0;
