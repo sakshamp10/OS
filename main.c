@@ -178,26 +178,29 @@ void echo(char** input){
     }
     for(int i=k;input[i]!=NULL;i++){
         if(input[i+1]==NULL && nflag==1){
-            char* temp=delim(input[i]);
-            for(int j=0;temp[j]!='\0';j++){
-                if (temp[j] == '$') {
-                    if (temp[j + 1] == '$') {
+            if(input[i][strlen(input[i])-1]=='\n'){
+                input[i][strlen(input[i])-1]='\0';
+            }
+            for(int j=0;input[i][j]!='\0';j++){
+                if (input[i][j] == '$') {
+                    if (input[i][j + 1] == '$') {
                         pid_t id=getpid();
                         printf("%d", (int) id);
                         j++;
                         continue;
                     }
                 }
-                if(temp[j]!='\\')
-                    printf("%c",temp[j]);
+                if(input[i][j]!='\\')
+                    printf("%c",input[i][j]);
                 else{
                     int count=0;
-                    if(temp[j+1]=='\\'){
-                        while(temp[j+1]=='\\'){
+                    if(input[i][j+1]=='\\'){
+                        while(input[i][j+1]=='\\'){
                             j++;
                             count++;
                         }
                         count/=2;
+                        j--;
                         char c='\\';
                         while(count--){
                             printf("%c",c);
@@ -226,6 +229,7 @@ void echo(char** input){
                         count++;
                     }
                     count/=2;
+                    j--;
                     char c='\\';
                     while(count--){
                         printf("%c",c);
