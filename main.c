@@ -35,6 +35,8 @@ void* mkdirThread(void *arg){
     char* compile=(char*)malloc(400*sizeof(char));
     snprintf(compile,4000,"gcc %s/mkdir.c -o mkdir",curr_path);
     printf("%s\n",compile);
+    printf("%s\n",command);
+
 //    system(compile);
 //    system(command);
     return NULL;
