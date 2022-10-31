@@ -197,7 +197,7 @@ void echo(char** input){
                         }
                         int count=j/2;
                         while(count--){
-                            printf("%c",temp[j-1]);
+                            printf("\\");
                         }
                     }
                 }
@@ -222,7 +222,7 @@ void echo(char** input){
                     }
                     int count=j/2;
                     while(count--){
-                        printf("%c",input[i][j-1]);
+                        printf("\\");
                     }
 
                 }
