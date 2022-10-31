@@ -163,7 +163,11 @@ int main(){
         else if(strcmp(inp,"pwd")==0){
             pwd();
         }
-        else if(strcmp(inp,"exit")==0 || strcmp(inp,"fuckdua")==0){
+        else if(strcmp(inp,"exit")==0){
+            break;
+        }
+        else if(strcmp(inp,"fuckdua")==0){
+            printf("yes, absolutely, fuck dua!!\n");
             break;
         }
         else if(strcmp(inp,"mkdir")==0){
