@@ -270,7 +270,7 @@ char* fullpath(char** input){
     }
     path=malloc(size*sizeof(char));
     int k=0;
-    for(i=1;input[i]!=NULL;i++){
+    for(i=p;input[i]!=NULL;i++){
         int j;
         for(j=0;input[i][j]!='\0';j++){
             path[k]=input[i][j];
