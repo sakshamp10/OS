@@ -14,16 +14,83 @@ char* delim(char* input){
     return inp;
 }
 
-void* catThread(){
+void* catThread(void* arg){
+    char* command= *(char**)arg;
+    if(command[strlen(command)-1]=='\n'){
+        command[strlen(command)-1]='\0';
+    }
+    char* n=NULL;
+    int s=0;
+    char* curr_path= getcwd(n,s);
+    char* compile=(char*)malloc(40*sizeof(char));
+    snprintf(compile,40,"gcc %s/cat.c -o cat",curr_path);
+    char* newcommand=(char*)malloc(400*sizeof(char));
+    snprintf(newcommand,400,"%s/cat",curr_path);
+    int i=0;
+    for(i=0;newcommand[i]!='\0';i++){
+    }
+    for(int j=5;command[j]!='\0';j++){
+        newcommand[i]=command[j];
+        i++;
+    }
+    newcommand[i]='\0';
+//    printf("%s",newcommand);
+    system(compile);
+    system(newcommand);
+    return NULL;
+}
+
+void* rmThread(void* arg){
+    char* command= *(char**)arg;
+    if(command[strlen(command)-1]=='\n'){
+        command[strlen(command)-1]='\0';
+    }
+    char* n=NULL;
+    int s=0;
+    char* curr_path= getcwd(n,s);
+    char* compile=(char*)malloc(40*sizeof(char));
+    snprintf(compile,40,"gcc %s/rm.c -o rm",curr_path);
+    char* newcommand=(char*)malloc(400*sizeof(char));
+    snprintf(newcommand,400,"%s/rm",curr_path);
+    int i=0;
+    for(i=0;newcommand[i]!='\0';i++){
+    }
+    for(int j=4;command[j]!='\0';j++){
+        newcommand[i]=command[j];
+        i++;
+    }
+    newcommand[i]='\0';
+//    printf("%s",newcommand);
+    system(compile);
+    system(newcommand);
+    return NULL;
 
 }
 
-void* rmThread(){
-
-}
-
-void* lsThread(){
-
+void* lsThread(void* arg){
+    char* command= *(char**)arg;
+    if(command[strlen(command)-1]=='\n'){
+        command[strlen(command)-1]='\0';
+    }
+    char* n=NULL;
+    int s=0;
+    char* curr_path= getcwd(n,s);
+    char* compile=(char*)malloc(40*sizeof(char));
+    snprintf(compile,40,"gcc %s/ls.c -o ls",curr_path);
+    char* newcommand=(char*)malloc(400*sizeof(char));
+    snprintf(newcommand,400,"%s/ls",curr_path);
+    int i=0;
+    for(i=0;newcommand[i]!='\0';i++){
+    }
+    for(int j=4;command[j]!='\0';j++){
+        newcommand[i]=command[j];
+        i++;
+    }
+    newcommand[i]='\0';
+//    printf("%s",newcommand);
+    system(compile);
+    system(newcommand);
+    return NULL;
 }
 
 void* mkdirThread(void *arg){
@@ -52,8 +119,30 @@ void* mkdirThread(void *arg){
     return NULL;
 }
 
-void* dateThread(){
-
+void* dateThread(void* arg){
+    char* command= *(char**)arg;
+    if(command[strlen(command)-1]=='\n'){
+        command[strlen(command)-1]='\0';
+    }
+    char* n=NULL;
+    int s=0;
+    char* curr_path= getcwd(n,s);
+    char* compile=(char*)malloc(40*sizeof(char));
+    snprintf(compile,40,"gcc %s/date.c -o date",curr_path);
+    char* newcommand=(char*)malloc(400*sizeof(char));
+    snprintf(newcommand,400,"%s/date",curr_path);
+    int i=0;
+    for(i=0;newcommand[i]!='\0';i++){
+    }
+    for(int j=6;command[j]!='\0';j++){
+        newcommand[i]=command[j];
+        i++;
+    }
+    newcommand[i]='\0';
+//    printf("%s",newcommand);
+    system(compile);
+    system(newcommand);
+    return NULL;
 }
 
 char** input_line(){
@@ -174,61 +263,164 @@ int main(){
     files_path=getcwd(files_path,x);
     char* path=NULL;
     printf("x---------------Saksham's Shell---------------x\n");
-    while(1){
-        path=files_path;
-        char* a=NULL;
-        size_t t=0;
-        char* b= getcwd(a,t);
-        printf("[ %s ]$ ",basename(b));
+    while(1) {
+        path = files_path;
+        char *a = NULL;
+        size_t t = 0;
+        char *b = getcwd(a, t);
+        printf("[ %s ]$ ", basename(b));
         free(a);
         free(b);
-        char **input=input_line();
-        char *inp=delim(input[0]);
-        if(inp==NULL || input[0]==NULL){
+        char **input = input_line();
+        char *inp = delim(input[0]);
+        if (inp == NULL || input[0] == NULL) {
 
-        }
-        else if(strcmp(inp,"cd")==0){
-            char* full_path = fullpath(input);
-            char* inp2= delim(full_path);
-            if(inp2==NULL || strcmp(inp2," ")==0 || strcmp(inp2,"~")==0){
-                if(chdir("/root")!=0 && chdir("/~")!=0){
+        } else if (strcmp(inp, "cd") == 0) {
+            char *full_path = fullpath(input);
+            char *inp2 = delim(full_path);
+            if (inp2 == NULL || strcmp(inp2, " ") == 0 || strcmp(inp2, "~") == 0) {
+                if (chdir("/root") != 0 && chdir("/~") != 0) {
+                    printf("Error occurred!\n");
+                }
+            } else {
+                if (chdir(inp2) != 0) {
                     printf("Error occurred!\n");
                 }
             }
-            else{
-                if(chdir(inp2)!=0){
-                    printf("Error occurred!\n");
-                }
-            }
-        }
-        else if(strcmp(inp,"echo")==0){
+        } else if (strcmp(inp, "echo") == 0) {
             echo(input);
-        }
-        else if(strcmp(inp,"pwd")==0){
+        } else if (strcmp(inp, "pwd") == 0) {
             pwd();
-        }
-        else if(strcmp(inp,"exit")==0){
+        } else if (strcmp(inp, "exit") == 0) {
             break;
-        }
-        else if(strcmp(inp,"fuckdua")==0){
+        } else if (strcmp(inp, "fuckdua") == 0) {
             printf("yes, absolutely, fuck dua!!\n");
             break;
-        }
-        else if(strcmp(inp,"mkdir")==0){
+        } else if (strcmp(inp, "mkdir") == 0) {
             pid_t proc;
-            proc=fork();
-            if(proc<0){
+            proc = fork();
+            if (proc < 0) {
                 printf("Error occurred!\n");
+            } else if (proc == 0) {
+                strcat(path, "/mkdir");
+                execve(path, input, NULL);
+            } else {
+                wait(NULL);
             }
-            else if(proc==0){
-                strcat(path,"/mkdir");
-                execve(path,input, NULL);
+        } else if (strcmp(inp, "mkdir&t") == 0) {
+            pthread_t t;
+            char *pass;
+            int y = 0;
+            pass = (char *) malloc(256 * sizeof(char));
+            int p = 0;
+            for (int i = 0; input[i] != NULL; i++) {
+                strcat(pass, input[i]);
+                strcat(pass, " ");
             }
-            else{
+            char *nowpass;
+            nowpass = (char *) malloc(256 * sizeof(char));
+            int l = 0;
+            for (int i = 0; i < strlen(pass) - 1; i++)  //remove space from last character
+                nowpass[l++] = pass[i];
+            pthread_create(&t, NULL, &mkdirThread, &nowpass);
+            pthread_join(t, NULL);
+        } else if (strcmp(inp, "cat") == 0) {
+            pid_t proc;
+            proc = fork();
+            if (proc < 0) {
+                printf("Error occurred!\n");
+            } else if (proc == 0) {
+                strcat(path, "/cat");
+                execve(path, input, NULL);
+            } else {
+                wait(NULL);
+            }
+        } else if (strcmp(inp, "cat&t") == 0) {
+            pthread_t t;
+            char *pass;
+            int y = 0;
+            pass = (char *) malloc(256 * sizeof(char));
+            int p = 0;
+            for (int i = 0; input[i] != NULL; i++) {
+                strcat(pass, input[i]);
+                strcat(pass, " ");
+            }
+            char *nowpass;
+            nowpass = (char *) malloc(256 * sizeof(char));
+            int l = 0;
+            for (int i = 0; i < strlen(pass) - 1; i++)  //remove space from last character
+                nowpass[l++] = pass[i];
+            pthread_create(&t, NULL, &catThread, &nowpass);
+            pthread_join(t, NULL);
+        } else if (strcmp(inp, "date") == 0) {
+            pid_t proc;
+            proc = fork();
+            if (proc < 0) {
+                printf("Error occurred!\n");
+            } else if (proc == 0) {
+                strcat(path, "/date");
+                execve(path, input, NULL);
+            } else {
+                wait(NULL);
+            }
+        } else if (strcmp(inp, "date&t") == 0) {
+            pthread_t t;
+            char *pass;
+            int y = 0;
+            pass = (char *) malloc(256 * sizeof(char));
+            int p = 0;
+            for (int i = 0; input[i] != NULL; i++) {
+                strcat(pass, input[i]);
+                strcat(pass, " ");
+            }
+            char *nowpass;
+            nowpass = (char *) malloc(256 * sizeof(char));
+            int l = 0;
+            for (int i = 0; i < strlen(pass) - 1; i++)  //remove space from last character
+                nowpass[l++] = pass[i];
+            pthread_create(&t, NULL, &dateThread, &nowpass);
+            pthread_join(t, NULL);
+        } else if (strcmp(inp, "rm") == 0) {
+            pid_t proc;
+            proc = fork();
+            if (proc < 0) {
+                printf("Error occurred!\n");
+            } else if (proc == 0) {
+                strcat(path, "/rm");
+                execve(path, input, NULL);
+            } else {
+                wait(NULL);
+            }
+        } else if (strcmp(inp, "rm&t") == 0) {
+            pthread_t t;
+            char *pass;
+            int y = 0;
+            pass = (char *) malloc(256 * sizeof(char));
+            int p = 0;
+            for (int i = 0; input[i] != NULL; i++) {
+                strcat(pass, input[i]);
+                strcat(pass, " ");
+            }
+            char *nowpass;
+            nowpass = (char *) malloc(256 * sizeof(char));
+            int l = 0;
+            for (int i = 0; i < strlen(pass) - 1; i++)  //remove space from last character
+                nowpass[l++] = pass[i];
+            pthread_create(&t, NULL, &rmThread, &nowpass);
+            pthread_join(t, NULL);
+        } else if (strcmp(inp, "ls") == 0) {
+            pid_t proc;
+            proc = fork();
+            if (proc < 0) {
+                printf("Error occurred!\n");
+            } else if (proc == 0) {
+                strcat(path, "/ls");
+                execve(path, input, NULL);
+            } else {
                 wait(NULL);
             }
         }
-        else if(strcmp(inp,"mkdir&t")==0){
+        else if(strcmp(inp,"ls&t")==0){
             pthread_t t;
             char *pass;int y=0;
             pass=(char *)malloc(256*sizeof(char));int p=0;
@@ -242,64 +434,8 @@ int main(){
             int l=0;
             for(int i=0;i<strlen(pass)-1;i++)  //remove space from last character
                 nowpass[l++]=pass[i];
-            pthread_create(&t,NULL,&mkdirThread,&nowpass);
+            pthread_create(&t,NULL,&lsThread,&nowpass);
             pthread_join(t,NULL);
-        }
-        else if(strcmp(inp,"cat")==0){
-            pid_t proc;
-            proc=fork();
-            if(proc<0){
-                printf("Error occurred!\n");
-            }
-            else if(proc==0){
-                strcat(path,"/cat");
-                execve(path,input, NULL);
-            }
-            else{
-                wait(NULL);
-            }
-        }
-        else if(strcmp(inp,"date")==0){
-            pid_t proc;
-            proc=fork();
-            if(proc<0){
-                printf("Error occurred!\n");
-            }
-            else if(proc==0){
-                strcat(path,"/date");
-                execve(path,input, NULL);
-            }
-            else{
-                wait(NULL);
-            }
-        }
-        else if(strcmp(inp,"rm")==0){
-            pid_t proc;
-            proc=fork();
-            if(proc<0){
-                printf("Error occurred!\n");
-            }
-            else if(proc==0){
-                strcat(path,"/rm");
-                execve(path,input, NULL);
-            }
-            else{
-                wait(NULL);
-            }
-        }
-        else if(strcmp(inp,"ls")==0){
-            pid_t proc;
-            proc=fork();
-            if(proc<0){
-                printf("Error occurred!\n");
-            }
-            else if(proc==0){
-                strcat(path,"/ls");
-                execve(path,input, NULL);
-            }
-            else{
-                wait(NULL);
-            }
         }
         else if(strcmp(inp,"clear")==0){
             system("clear");
