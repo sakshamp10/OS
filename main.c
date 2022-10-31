@@ -177,16 +177,15 @@ void echo(char** input){
     }
     for(int i=k;input[i]!=NULL;i++){
 
-        if(input[i]=='$'){
-            if(input[i+1]=='$'){
-                printf("%d",(int)getpid());
-                i++;
-            }
-        }
-
         if(input[i+1]==NULL && nflag==1){
             char* temp=delim(input[i]);
             for(int j=0;temp[j]!='\0';j++){
+                if (input[i][j] == '$') {
+                    if (input[i][j + 1] == '$') {
+                        printf("%d", (int) getpid());
+                        i++;
+                    }
+                }
                 if(temp[j]!='\\')
                     printf("%c",temp[j]);
                 else{
