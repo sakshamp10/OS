@@ -5,8 +5,6 @@
 #include <sys/wait.h>
 #include <libgen.h>
 #include <pthread.h>
-//#include <process.h>
-
 
 char* files_path=NULL;
 
@@ -35,7 +33,6 @@ void* catThread(void* arg){
         i++;
     }
     newcommand[i]='\0';
-//    printf("%s",newcommand);
     system(compile);
     system(newcommand);
     return NULL;
@@ -61,7 +58,6 @@ void* rmThread(void* arg){
         i++;
     }
     newcommand[i]='\0';
-//    printf("%s",newcommand);
     system(compile);
     system(newcommand);
     return NULL;
@@ -88,7 +84,6 @@ void* lsThread(void* arg){
         i++;
     }
     newcommand[i]='\0';
-//    printf("%s",newcommand);
     system(compile);
     system(newcommand);
     return NULL;
@@ -114,7 +109,6 @@ void* mkdirThread(void *arg){
         i++;
     }
     newcommand[i]='\0';
-//    printf("%s",newcommand);
     system(compile);
     system(newcommand);
     return NULL;
@@ -140,7 +134,6 @@ void* dateThread(void* arg){
         i++;
     }
     newcommand[i]='\0';
-//    printf("%s",newcommand);
     system(compile);
     system(newcommand);
     return NULL;
@@ -197,9 +190,6 @@ void echo(char** input){
                     if(input[i][j+1]=='\\'){
                         while(input[i][j+1]=='\\'){
                             j++;
-                            if(input[i][j+1]=='\0'){
-                                count++;
-                            }
                             count++;
                         }
                         count/=2;
@@ -229,10 +219,10 @@ void echo(char** input){
                 if(input[i][j+1]=='\\'){
                     while(input[i][j+1]=='\\') {
                         j++;
+                        count++;
                         if(input[i][j+1]=='\0'){
                             count++;
                         }
-                        count++;
                     }
                     count/=2;
                     j--;
@@ -263,6 +253,10 @@ char* fullpath(char** input){
     int i;
     int size=0;
     char* path=NULL;
+    if(strcmp(input[1],"-P")!=0 && strcmp(input[1],"-L")!=0){
+        printf("Invalid Option!\n");
+        return NULL;
+    }
     for(i=1;input[i]!=NULL;i++){
         int j;
         for(j=0;input[i][j]!='\0';j++){
@@ -313,6 +307,9 @@ int main(){
 
         } else if (strcmp(inp, "cd") == 0) {
             char *full_path = fullpath(input);
+            if(full_path==NULL) {
+                continue;
+            }
             char *inp2 = delim(full_path);
             if (inp2 == NULL || strcmp(inp2, " ") == 0 || strcmp(inp2, "~") == 0) {
                 if (chdir("/root") != 0 && chdir("/~") != 0) {
@@ -484,9 +481,6 @@ int main(){
         else{
             printf("%s: Command not found\n",inp);
         }
-
-//        free(inp);
-//        free2D(input);
     }
     return 0;
 }
