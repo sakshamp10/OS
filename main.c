@@ -5,7 +5,7 @@
 #include <sys/wait.h>
 #include <libgen.h>
 #include <pthread.h>
-#include <process.h>
+//#include <process.h>
 
 
 char* files_path=NULL;
