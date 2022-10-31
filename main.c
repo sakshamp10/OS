@@ -30,7 +30,7 @@ void* lsThread(){
 void* mkdirThread(void *arg){
     char* command= (char*)arg;
     char* n=NULL;
-    size_t s=0;
+    int s=0;
     char* curr_path= getcwd(n,s);
     char* compile=(char*)malloc(400*sizeof(char));
     snprintf(compile,4000,"gcc %s/mkdir.c -o mkdir",curr_path);
@@ -224,8 +224,9 @@ int main(){
                 strcat(pass," ");
             }
             char *nowpass;
-            nowpass=(char *)malloc(256*sizeof(char));int l=0;
-            for(int i=0;i<strlen(pass)-1;i++)
+            nowpass=(char *)malloc(256*sizeof(char));
+            int l=0;
+            for(int i=0;i<strlen(pass)-1;i++)  //remove space from last character
                 nowpass[l++]=pass[i];
             pthread_create(&t,NULL,&mkdirThread,&nowpass);
             pthread_join(t,NULL);
