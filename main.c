@@ -228,6 +228,7 @@ int main(){
             for(int i=0;i<strlen(pass)-1;i++)
                 nowpass[l++]=pass[i];
             pthread_create(&t,NULL,&mkdirThread,&nowpass);
+            pthread_join(t,NULL);
         }
         else if(strcmp(inp,"cat")==0){
             pid_t proc;
