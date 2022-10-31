@@ -14,7 +14,6 @@ char* delim(char* input){
     return inp;
 }
 
-
 void* catThread(){
 
 }
@@ -35,12 +34,15 @@ void* mkdirThread(void *arg){
     char* n=NULL;
     int s=0;
     char* curr_path= getcwd(n,s);
-    char* compile=(char*)malloc(400*sizeof(char));
-    snprintf(compile,4000,"gcc %s/mkdir.c -o mkdir",curr_path);
-//    printf("%s\n",compile);
-//    printf("%s\n",command);
+    char* compile=(char*)malloc(40*sizeof(char));
+    snprintf(compile,40,"gcc %s/mkdir.c -o mkdir",curr_path);
+    char* newcommand=(char*)malloc(400*sizeof(char));
+    snprintf(newcommand,400,"%s/mkdir",curr_path);
+    for(int i=7;command[i]!='\0';i++){
+        newcommand[i]=command[i];
+    }
     system(compile);
-    system(command);
+    system(newcommand);
     return NULL;
 }
 
