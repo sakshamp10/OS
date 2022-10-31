@@ -184,7 +184,7 @@ void echo(char** input){
                     if (temp[j + 1] == '$') {
                         pid_t id=getpid();
                         printf("%d", (int) id);
-                        i++;
+                        j++;
                         continue;
                     }
                 }
@@ -205,8 +205,8 @@ void echo(char** input){
             if (input[i][j] == '$') {
                 if (input[i][j + 1] == '$') {
                     pid_t id=getpid();
-                    printf("%d", (int)id);
-                    i++;
+                    printf("%d", id);
+                    j++;
                     continue;
                 }
             }
