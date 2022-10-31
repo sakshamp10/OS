@@ -41,8 +41,9 @@ void* mkdirThread(void *arg){
     for(int i=7;command[i]!='\0';i++){
         newcommand[i]=command[i];
     }
-    system(compile);
-    system(newcommand);
+    printf("%s",newcommand);
+//    system(compile);
+//    system(newcommand);
     return NULL;
 }
 
