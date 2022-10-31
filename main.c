@@ -197,8 +197,9 @@ void echo(char** input){
                             j++;
                             count++;
                         }
+                        char c='\\';
                         while(count--){
-                            printf("\\");
+                            printf("%c",c);
                         }
                     }
                 }
@@ -223,10 +224,10 @@ void echo(char** input){
                         j++;
                         count++;
                     }
+                    char c='\\';
                     while(count--){
-                        printf("\\");
+                        printf("%c",c);
                     }
-
                 }
             }
         }
