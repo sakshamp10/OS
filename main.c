@@ -195,7 +195,9 @@ void echo(char** input){
                         while(temp[j+1]=='\\'){
                             j++;
                         }
-                        printf("%c",temp[j]);
+                        int count=j/2;
+                        while(count--)
+                            printf("%c",temp[j]);
                     }
                 }
             }
@@ -217,7 +219,9 @@ void echo(char** input){
                     while(input[i][j+1]=='\\'){
                         j++;
                     }
-                    printf("%c",input[i][j]);
+                    int count=j/2;
+                    while(count--)
+                        printf("%c",input[i][j]);
                 }
             }
         }
