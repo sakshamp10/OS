@@ -22,7 +22,7 @@ int main(int argc, char* argv[],char* envp[]){
         else if(tm->tm_wday==3) day="Wednesday";
         else if(tm->tm_wday==4) day="Thursday";
         else if(tm->tm_wday==5) day="Friday";
-        else if(tm->tm_wday==6)day="Saturday";
+        else if(tm->tm_wday==6) day="Saturday";
 
 
         if(tm->tm_mon==0) month="January";
@@ -49,7 +49,7 @@ int main(int argc, char* argv[],char* envp[]){
         else if(utcTime->tm_wday==3) day="Wednesday";
         else if(utcTime->tm_wday==4) day="Thursday";
         else if(utcTime->tm_wday==5) day="Friday";
-        else if(utcTime->tm_wday==6)day="Saturday";
+        else if(utcTime->tm_wday==6) day="Saturday";
 
 
         if(utcTime->tm_mon==0) month="January";
