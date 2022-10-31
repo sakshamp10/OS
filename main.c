@@ -39,7 +39,7 @@ void* mkdirThread(void *arg){
     char* newcommand=(char*)malloc(400*sizeof(char));
     snprintf(newcommand,400,"%s/mkdir",curr_path);
     int i=0;
-    for(i=0;command[i]!='\0';i++){
+    for(i=0;newcommand[i]!='\0';i++){
     }
     for(int j=7;command[j]!='\0';j++){
         newcommand[i]=command[j];
