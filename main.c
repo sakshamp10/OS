@@ -197,6 +197,9 @@ void echo(char** input){
                     if(input[i][j+1]=='\\'){
                         while(input[i][j+1]=='\\'){
                             j++;
+                            if(input[i][j+1]=='\0'){
+                                count++;
+                            }
                             count++;
                         }
                         count/=2;
@@ -226,6 +229,9 @@ void echo(char** input){
                 if(input[i][j+1]=='\\'){
                     while(input[i][j+1]=='\\') {
                         j++;
+                        if(input[i][j+1]=='\0'){
+                            count++;
+                        }
                         count++;
                     }
                     count/=2;
