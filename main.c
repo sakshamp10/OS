@@ -177,7 +177,12 @@ void echo(char** input){
     }
     for(int i=k;input[i]!=NULL;i++){
 
-        //pid with $$ to be handled
+        if(input[i]=='$'){
+            if(input[i+1]=='$'){
+                printf("%d",(int)getpid());
+                i++;
+            }
+        }
 
         if(input[i+1]==NULL && nflag==1){
             char* temp=delim(input[i]);
