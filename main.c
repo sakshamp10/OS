@@ -176,7 +176,6 @@ void echo(char** input){
         k++;
     }
     for(int i=k;input[i]!=NULL;i++){
-
         if(input[i+1]==NULL && nflag==1){
             char* temp=delim(input[i]);
             for(int j=0;temp[j]!='\0';j++){
@@ -201,6 +200,13 @@ void echo(char** input){
             continue;
         }
         for(int j=0;input[i][j]!='\0';j++){
+            if (input[i][j] == '$') {
+                if (input[i][j + 1] == '$') {
+                    printf("%d", (int) getpid());
+                    i++;
+                    continue;
+                }
+            }
             if(input[i][j]!='\\')
                 printf("%c",input[i][j]);
             else{
